@@ -44,7 +44,7 @@ Flag: **pwn.college{Yojf1o6fikEImim5NHsIsuWjYFM.dBTN1QDL3YTO0czW}**
 
 # implicit-relative-path
 
-First, go to the `/challenge` directory using `cd /challenge`. Now, since we can't directly run the program by using `run`, we need to use `.`. Therefore, I then ran './run'.
+First, go to the `/challenge` directory using `cd /challenge`. Now, since we can't directly run the program by using `run`, we need to use `.`. Therefore, I then ran `./run`.
 
 Flag: **pwn.college{wX-2xTSu-Qw6jTYmnhEGxvGsVpl.dFTN1QDL3YTO0czW}**
 
