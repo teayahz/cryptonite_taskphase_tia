@@ -1,10 +1,10 @@
-#Intro-to-Commands
+# Intro-to-Commands
 
 In this challenge, I first executed `whoami` on the terminal, and then `hello` to get the flag.
 
 Flag: **pwn.college{EdxZRiKuAHOsP12l4ZURceFwQ0A.ddjNyUDL3YTO0czW}**
 
-#Intro-to-Arguments
+# Intro-to-Arguments
 
 First, by executing `echo Hello`, I learnt that `echo` is the *command* while `Hello` is an *argument*. `echo` returns or displays back the argument(s) entered with it. 
 
