@@ -50,6 +50,6 @@ Flag: **pwn.college{wX-2xTSu-Qw6jTYmnhEGxvGsVpl.dFTN1QDL3YTO0czW}**
 
 # home-sweet-home
 
-Here, I learnt that the home directory, in this case `/home/hacker`, can be shortened to `~`. Since a file is needed as an argument which is 3 characters long, is in our home directory and is an absolute path, I ran `/challenge/run ~/c`.
+Here, I learnt that the home directory, in this case `/home/hacker`, can be shortened to `~`. Since a file is needed as an argument which is 3 characters long, is in our home directory and is an absolute path, I ran `/challenge/run ~/c`. It works with any number or letter in place of c.
 
 Flag: **pwn.college{khi7nEBVdOtIr-V6osVmDlEC0rc.dNzM4QDL3YTO0czW}**
