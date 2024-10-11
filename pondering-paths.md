@@ -6,7 +6,7 @@ Flag: **pwn.college{MKUkBdWZ1ms6YpxakUAwxt4I22k.dhzN5QDL3YTO0czW}**
 
 # Program-and-absolute-paths
 
-Here, I had to invoke the *run* file which was in the *challenge* directory which was in the root directory with its absolute path, which was `/challenge/run`.
+Here, I had to invoke the *run* file, which was in the *challenge* directory which was in the root directory, with its absolute path, which was `/challenge/run`.
 
 Flag: **pwn.college{YlMdxbGtWFQ3tL0_pRJ27CM8_N-.dVDN1QDL3YTO0czW}**
 
