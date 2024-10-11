@@ -29,14 +29,14 @@ In the same way as the previous challenge, I had to change my directory to a dif
 
 Flag: **pwn.college{8JxluH5EtI64-6kVQbsRsNrWNQ2.dhDN1QDL3YTO0czW}**
 
-# implicit-relative-paths,-from-/
+# implicit-relative-paths-from-/
 
 For this challenge, I had to change my working directory to `/`, and then execute `/challenge/run` as a *relative path*. a relative path is one without '/' at the start. So I first did `cd /`, and then I did `challenge/run`.
 
 Flag: **pwn.college{4HM1cNPN9n0IjuS520cPPPvHpFq.dlDN1QDL3YTO0czW}**
 
 
-# explicit-relative-paths,-from-/
+# explicit-relative-paths-from-/
 
 First, we have to go to `/`. This is now the current working directory and here, absolute paths are equivalent to relative paths. Since `./` refers to the same directory, I ran `cd /` and then `./challenge/run`.
 
