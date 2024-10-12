@@ -36,7 +36,7 @@ Flag: **pwn.college{sFj9wo0UMj9kYtg2Se0VZt7L02X.dBzM4QDL3YTO0czW}**
 
 # removing-files
 
-The `rm` command is used to remove files. For this challenge, I had to remove the 'delete_me' file by using `rm delete_me`, and then run '/challenge/check' to obtain the flag. 
+The `rm` command is used to remove files. For this challenge, I had to remove the `delete_me` file by using `rm delete_me`, and then run '/challenge/check' to obtain the flag. 
 
 Flag: **pwn.college{U3KnMRGGPIeX80jgoz060Je1Pth.dZTOwUDL3YTO0czW}**
 
