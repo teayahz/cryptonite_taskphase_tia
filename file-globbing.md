@@ -12,7 +12,7 @@ Flag: **pwn.college{knZutl56lVOxAaurjXG3BYskhDI.dJjM4QDL3YTO0czW}**
 
 # Matching-with-[]
 
-[] matches a set of characters specified inside it. For this challenge, I had to bracket-glob `file_b, file_a, file_s & file_h`, so I first went to the required directory with `cd /challenge/files` and then ran `/challenge/run file[bash]`.
+[] matches a set of characters specified inside it. For this challenge, I had to bracket-glob `file_b, file_a, file_s & file_h`, so I first went to the required directory with `cd /challenge/files` and then ran `/challenge/run file_[bash]`.
 
 Flag: **pwn.college{kd0M1_jk00ofLsUN7dMW9-HDZTT.dNjM4QDL3YTO0czW}**
 
