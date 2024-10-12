@@ -24,7 +24,7 @@ Flag: **pwn.college{AkGI_UYGy-khtusee34s3HSQEVN.ddTM4QDL3YTO0czW}**
 
 # listing-files
 
-`ls` is a command used to list all files in the directories provided, or in the current one. By listing files under `/challenge`, I found that the *run* file was renamed to *7638-renamed-run-20789*, and so I `/challenge/7638-renamed-run-20789` to get the flag.
+`ls` is a command used to list all files in the directories provided, or in the current one. By listing files under `/challenge`, I found that the *run* file was renamed to *7638-renamed-run-20789*, and so I ran `/challenge/7638-renamed-run-20789` to get the flag.
 
 Flag: **pwn.college{QuiGnetNR6NNQc4kny5JYYl9hBC.dhjM4QDL3YTO0czW}**
 
