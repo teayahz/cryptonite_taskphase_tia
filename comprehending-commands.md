@@ -36,19 +36,19 @@ Flag: **pwn.college{sFj9wo0UMj9kYtg2Se0VZt7L02X.dBzM4QDL3YTO0czW}**
 
 # removing-files
 
-The `rm` command is used to remove files. For this challenge, I had to remove the `delete_me` file by using `rm delete_me`, and then run '/challenge/check' to obtain the flag. 
+The `rm` command is used to remove files. For this challenge, I had to remove the `delete_me` file by using `rm delete_me`, and then run `/challenge/check` to obtain the flag. 
 
 Flag: **pwn.college{U3KnMRGGPIeX80jgoz060Je1Pth.dZTOwUDL3YTO0czW}**
 
 # hidden-files
 
-The `ls -a` command can be used to show up files starting with a *.* that were hidden automatically. The flag here was hidden in the / directory so I had to do `cd /` and then `ls -a` to find a file named `.flag-20471261975398`. I did `cat .flag-20471261975398` to read out the file & find the flag.
+The `ls -a` command can be used to show up files starting with a *.* that were hidden automatically. The flag here was hidden in the */* directory so I had to do `cd /` and then `ls -a` to find a file named `.flag-20471261975398`. I did `cat .flag-20471261975398` to read out the file & find the flag.
 
 Flag: **pwn.college{gYoZXC7sQIjE_5lk5VKWlPHfph5.dBTN4QDL3YTO0czW}**
 
 # An-Epic-Filesystem-Quest
 
-By using my knowledge of the commands, `cd`, `ls` & `cat`, I had to start from `cd /` & navigate through a bunch of directories, some which I couldn't use `cd` for directly but instead `ls <absolute path>`, and some on which I had to use `ls -a` to find the hidden clues and the paths to them, and `cat` to read them all out.
+By using my knowledge of the commands, `cd`, `ls` & `cat`, I had to start from `cd /` & navigate through a bunch of directories, some of which I couldn't use `cd` for directly but instead `ls <absolute path>`, and some of which I had to use `ls -a` to find the hidden clues and the paths to them, and `cat` to read them all out.
 
 Flag: **pwn.college{8p_TAX5P214H_D7k0x2TlKIV1nk.dljM4QDL3YTO0czW}**
 
