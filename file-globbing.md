@@ -1,6 +1,6 @@
 # Matching-with-*
 
-`*` is treated as a *wildcard* and replaces files that match the pattern as in out of `file_a, file_b & file_c`, `file_*` would return all three. For this challenge, I had to navigate to the *challenge* directory by using atmost 4 characters. So I ran `cd /c*e`, and then /challenge/run.
+`*` is treated as a *wildcard* and replaces files that match the pattern as in out of `file_a, file_b & file_c`, `file_*` would return all three. For this challenge, I had to navigate to the *challenge* directory by using atmost 4 characters. So I ran `cd /c*e`, and then `/challenge/run`.
 
 Flag: **pwn.college{4_rdyAyEzqNlgKeGG-0oygq2cR4.dFjM4QDL3YTO0czW}**
 
