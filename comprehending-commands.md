@@ -30,7 +30,7 @@ Flag: **pwn.college{QuiGnetNR6NNQc4kny5JYYl9hBC.dhjM4QDL3YTO0czW}**
 
 # touching-files
 
-The 'touch' command is used to create a new file. To clear this challenge I had to create the files `/tmp/pwn` and `/tmp/challenge` and then run `/challenge/run`.
+The 'touch' command is used to create a new file. To clear this challenge, I had to create the files `/tmp/pwn` and `/tmp/challenge` and then run `/challenge/run`.
 
 Flag: **pwn.college{sFj9wo0UMj9kYtg2Se0VZt7L02X.dBzM4QDL3YTO0czW}**
 
