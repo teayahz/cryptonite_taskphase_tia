@@ -60,6 +60,6 @@ Flag: **pwn.college{g7ym2mT4UxXKOz1Q5ODYR4hZ4yd.dBDO0UDL3YTO0czW}**
 
 # Split-piping-stderr-and-stdout
 
-
+In this challenge, I had to redirect `/challenge/hack`'s errors to `/challenge/the` & standard output to `/challenge/planet/` using `>()`, `>` & `|`. So, I ran `/challenge/hack > >(/challenge/planet) 2> >(/challenge/the)`.
 
 Flag: **pwn.college{02jRYnNVKhk10PtKCOypPwaLw0B.dFDNwYDL3YTO0czW}**
