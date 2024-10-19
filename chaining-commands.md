@@ -18,6 +18,6 @@ Flag: **pwn.college{UCrYi5vb-3cyZnFYPdicM6e_ksA.dhTM5QDL3YTO0czW}**
 
 # Executable-Shell-Scripts
 
-Instead of executing shell scripts with the `bash` command, the work can be done by giving it the execute permissions and running it through its relative or absolute path. In this challenge, I had to create a script that invoked `/challenge/solve`, so I first did `touch x.sh` and then `echo /challenge/solve>x.sh`. Now to give it executable permissions, I ran `chmod u+x x.sh`, and finally `./x.sh to get the flag.
+Instead of executing shell scripts with the `bash` command, the work can be done by giving it the execute permissions and running it through its relative or absolute path. In this challenge, I had to create a script that invoked `/challenge/solve`, so I first did `touch x.sh` and then `echo /challenge/solve>x.sh`. Now to give it executable permissions, I ran `chmod u+x x.sh`, and finally `./x.sh` to get the flag.
 
 Flag: **pwn.college{0Lf1p9gtlC8-NCCpsfQA9ocg1Kz.dRzNyUDL3YTO0czW}**
