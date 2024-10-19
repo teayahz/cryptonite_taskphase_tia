@@ -11,7 +11,7 @@ Flag: **pwn.college{ch-bf8INRpVK530jY5lL4-VYdT3.dZzNwUDL3YTO0czW}**
 Flag: **pwn.college{UdhZQTmH_JqAhTQQMGrysbEDroi.dVzNyUDL3YTO0czW}**
 # Adding-Commands
 
-In this challenge, I had to create a `win` file that contained the flag, and add its location to PATH. So I ran `touch win` & then `echo 'cat /flag'>win` to create the file and have it have the flag. The path was set using `PATH="/home/hacker:$PATH"` where the home directory is appended to the existing paths. I made the *win* file executable using `chmod +x win` (where all users are given executable permissions) and proceeded with `/challenge/run`.
+In this challenge, I had to create a `win` file that contained the flag, and add its location to PATH. So I ran `touch win` & then `echo 'cat /flag'>win` to create the file and have it have the flag. The path was set using `PATH="/home/hacker:$PATH"` where the home directory is prepended to the existing paths. I made the *win* file executable using `chmod +x win` (where all users are given executable permissions) and proceeded with `/challenge/run`.
 
 Flag: **pwn.college{whCK-m9jwXla29sLdhDn9N1u8Qc.dZzNyUDL3YTO0czW}**
 # Hijacking-Commands
