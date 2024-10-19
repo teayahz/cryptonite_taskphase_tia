@@ -32,7 +32,7 @@ Flag: **pwn.college{IzznprvLscIbdP9zP3qh8pO3Qcz.dJTM2QDL3YTO0czW}**
 
 # Permission-Tweaking-Practice
 
-This challenge required to change the permissions of `/challenge/pwn` as specified and began by running `/challenge/run`. It was then a series of 8 rounds of changing permissions, which I had to get all right to permissions to make the flag readable. After restarting the challenge several times, I cleared it and then did `chmod u+r /flag` to make it readable and read it with `cat /flag`.
+This challenge required to change the permissions of `/challenge/pwn` as specified and began by running `/challenge/run`. It was then a series of 8 rounds of changing permissions, which I had to get all right to permissions to make the flag readable. Example: to change add read permission to the user, remove execute permission from the group, and add read & write permission to world, I'd run `chmod u+r,g-x,o+rw /challenge/pwn`. After restarting the challenge several times, I cleared it and then did `chmod u+r /flag` to make it readable and read it with `cat /flag`.
 
 Flag: **pwn.college{skwoCd2gpmY3gGoboQE1UMWY3cw.dBTM2QDL3YTO0czW}**
 
