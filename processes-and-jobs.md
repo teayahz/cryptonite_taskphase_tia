@@ -14,13 +14,13 @@ Flag: **pwn.college{YCD5TBX4_qL-NL0PWuOnTF5KwXO.dJDN4QDL3YTO0czW}**
 
 # Interrupting-Processes
 
-Instead of killing processes, you can interrupt them using the `Ctrl+C` hotkey (which is also used to copy) so that the process that the command is waiting on is interrupted and cleanly exits. To get the flag, I ran `/challenge/run` & interrupted it with `Ctrl-C`.
+Instead of killing processes, you can interrupt them using the `Ctrl+C` hotkey so that the process that the command is waiting on is interrupted and cleanly exits. To get the flag, I ran `/challenge/run` & interrupted it with `Ctrl-C`.
 
 Flag: **pwn.college{Enec-d8jgw1SW-x5BGs4Ux8KgKc.dNDN4QDL3YTO0czW}**
 
 # Suspending-Processes
 
-Processes can also be suspended in the background with the `Ctrl+Z` hotkey (which is also used to undo), and resumed later. In this challenge I had to suspend `run`, and again run a copy of it so I entered `/challenge/run`, hit `Ctrl-Z`, and then ran `/challenge/run` again.
+Processes can also be suspended in the background with the `Ctrl+Z` hotkey, and resumed later. In this challenge I had to suspend `run`, and again run a copy of it so I entered `/challenge/run`, hit `Ctrl-Z`, and then ran `/challenge/run` again.
 
 Flag: **pwn.college{kOjK2APhGiE6jVcwvG1O92WusyY.dVDN4QDL3YTO0czW}**
 
