@@ -1,9 +1,8 @@
 | done | doing | haven't started                |
 | ---- | ----- | ------------------------------ |
-|      |       | GDB baby step 1                |
+|      |   C3    | GDB baby step 1                |
 |      |       | Trivial Flag Transfer Protocol |
 |      |       | SOAP                           |
-|      |       | C3                             |
 |      |       | buffer overflow 0              |
 |      |       | ARMssembly 1                   |
 |      |       | tunn3l v1s10n                  |
