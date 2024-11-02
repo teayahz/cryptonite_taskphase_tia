@@ -1,6 +1,6 @@
 | done | doing | haven't started                |
 | ---- | ----- | ------------------------------ |
-|      |   C3    | GDB baby step 1                |
+| C3    |       | GDB baby step 1                |
 |      |       | Trivial Flag Transfer Protocol |
 |      |       | SOAP                           |
 |      |       | buffer overflow 0              |
