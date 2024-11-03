@@ -79,7 +79,7 @@ s
 3. Executing python code with a file and using the file's contents as input for the code.
 
 **Mistakes & other approaches:**
-- I had to change `(cur-prev)%40)` to `(cur+prev)%40`.
+- I had to change `(cur-prev)%40` to `(cur+prev)%40`.
 - Initially, I put the original ciphertext into the second code's `chars` string, and got confused from the misleading output, then the first code which still didn't give the required output, and then used the new code.
 - Forgetting to change `print chars[i]` to `print (chars[i])`
 - Instead of creating a new .txt file of the first ouput, to run it with the new code in shell, I directly pasted it into the `chars = ""` string. This could be done with the first code too.
