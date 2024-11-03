@@ -93,4 +93,3 @@ s
 # miniRSA
 
 
-![screenshot](./screenshot.png)
