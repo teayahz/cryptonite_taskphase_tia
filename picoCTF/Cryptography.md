@@ -161,15 +161,15 @@ def decryption(cipher, text_key, a, b):
         print("Invalid key")
         return
     semi_cipher = decrypt(cipher, key)
-    decrypted_text = dynamic_xor_decrypt(semi_cipher, text_key)
+    decrypted_text = dynamic_xor_decrypt(semi_cipher, text)
     print(f"Decrypted text: {decrypted_text}")
 
 #Assigning given values
 cipher = [33588, 276168, 261240, 302292, 343344, 328416, 242580, 85836, 82104, 156744, 0, 309756, 78372, 18660, 253776, 0, 82104, 320952, 3732, 231384, 89568, 100764, 22392, 22392, 63444, 22392, 97032, 190332, 119424, 182868, 97032, 26124, 44784, 63444]
 a = 89
 b = 27
-text_key = "trudeau"
-decryption(cipher, text_key, a, b)
+text = "trudeau"
+decryption(cipher, text, a, b)
 
 ```
 
