@@ -5,13 +5,13 @@
 **Solution:** 
 - Since the challenge mentioned that it's a cyclical cipher, I opened the code and saw two strings of text that were used for the substitution - `lookup1` & `lookup2`. But these had to be swapped or else the characters would be mismatched. 
 - The decoding function also had to be edited from `cur-prev` to `cur+prev` as else it cycles backwards, and I added a variable to determine this index, and changed the `prev` value to this. 
-```
+```c
 for char in chars:
   cur = lookup1.index(char)
   index = (cur+prev)%40
   out += lookup2[index]
   prev = index 
-```
+``` 
 - I ran the code on shell using `python3 convert.py ciphertext` as the code had a line to read text from the cipher file. The output was: 
 ```
 #asciiorder
