@@ -5,7 +5,7 @@
 **Solution:** 
 - Since the challenge mentioned that it's a cyclical cipher, I opened the code and saw two strings of text that were used for the substitution - `lookup1` & `lookup2`. But these had to be swapped or else the characters would be mismatched. 
 - The decoding function also had to be edited from `cur-prev` to `cur+prev` as else it cycles backwards, and I added a variable to determine this index, and changed the `prev` value to this. 
-```c
+```python
 for char in chars:
   cur = lookup1.index(char)
   index = (cur+prev)%40
@@ -33,7 +33,7 @@ for i in range(len(chars)):
 This is the new code I had to work with. The comments give clues such as - it's compatible with python2 & *selfinput*, which referred to using this output as the input itself for the new code.
 
 - So I replaced the old code with this output, and made edits such as `print chars[i]` to `print (chars[i])` as the latter is python3 format. I replaced the `chars = ""` string with this exact output code using `""" """` and deleted the file input reading command. The final code is: 
-```c
+```python
 #asciiorder
 #fortychars
 #selfinput
