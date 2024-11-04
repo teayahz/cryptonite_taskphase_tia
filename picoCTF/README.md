@@ -9,7 +9,7 @@
 | 6   | ARMssembly 1                   | Reverse-Engg | Medium     | Haven't started |
 | 7   | tunn3l v1s10n                  | Forensics    | Medium     | Haven't started |
 | 8   | Forbidden Paths                | Web-Exp      | Medium     | Haven't started |
-| 9   | Custom encryption              | Cryptography | Medium     | Doing           |
+| 9   | Custom encryption              | Cryptography | Medium     | Done           |
 | 10  | format string 0                | Binary-Exp   | Easy       | Haven't started |
 | 11  | vault-door-3                   | Reverse-Engg | Medium     | Haven't started |
 | 12  | m00nwalk                       | Forensics    | Medium     | Haven't started |
