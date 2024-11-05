@@ -34,7 +34,7 @@ Please choose from the following burgers: Breakf@st_Burger, Gr%114d_Cheese, Bac0
 
 - Similar to last time, `Cla%sic_Che%s%steak` had multiple `%s`s which are used for strings and satisfy the requirement of a format specifier that the other options don't.
 ```
-Gr                                                                      4202954_Cheese
+Gr                                                                                                           4202954_Cheese
 Good job! Patrick is happy! Now can you serve the second customer?
 Sponge Bob wants something outrageous that would break the shop (better be served quick before the shop owner kicks you out!)
 Please choose from the following burgers: Pe%to_Portobello, $outhwest_Burger, Cla%sic_Che%s%steak
