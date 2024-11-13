@@ -8,7 +8,7 @@
 | 5   | buffer overflow 0              | Binary-Exp   | Medium     | Done |
 | 6   | ARMssembly 1                   | Reverse-Engg | Medium     | Haven't started |
 | 7   | tunn3l v1s10n                  | Forensics    | Medium     | Done |
-| 8   | Forbidden Paths                | Web-Exp      | Medium     | Haven't started |
+| 8   | Forbidden Paths                | Web-Exp      | Medium     | Done |
 | 9   | Custom encryption              | Cryptography | Medium     | Done           |
 | 10  | format string 0                | Binary-Exp   | Easy       | Done |
 | 11  | vault-door-3                   | Reverse-Engg | Medium     | Haven't started |
