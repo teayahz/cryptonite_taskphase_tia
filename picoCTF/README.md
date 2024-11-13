@@ -1,7 +1,7 @@
 
 | No. | Name                           | Category     | Difficulty | Progress        |
 | --- | ------------------------------ | ------------ | ---------- | --------------- |
-| 1   | GDB baby step 1                | Reverse-Engg | Medium     | Haven't started |
+| 1   | GDB baby step 1                | Reverse-Engg | Medium     | Doing |
 | 2   | Trivial Flag Transfer Protocol | Forensics    | Medium     | Haven't started |
 | 3   | SOAP                           | Web-Exp      | Medium     | Haven't started |
 | 4   | C3                             | Cryptography | Medium     | Done            |
