@@ -4,7 +4,8 @@
 
 **Solution:** 
 - The given file was a *PCAPNG* file, and on looking that up, I installed *Wireshark* to view the contents in the file.
-- I exported the *TFTP* (Trivial File Transfer Protocol) objects of the given file by opening it on Wireshark and going to File -> Export Objects. 
+- I exported the *TFTP* (Trivial File Transfer Protocol) objects of the given file by opening it on Wireshark and going to File -> Export Objects.
+
 ![tftp1.jpg](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/picoCTF/images/tftp1.JPG?raw=true)
 
 - I opened the files `instructions.txt` and `plan` and found the following strings of letters which seemed to be a cipher - ROT13 to be precise.
