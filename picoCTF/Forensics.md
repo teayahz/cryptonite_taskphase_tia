@@ -1,5 +1,51 @@
 # Trivial Flag Transfer Protocol
 
+**Flag:** `picoCTF{h1dd3n_1n_pLa1n_51GHT_18375919}`
+
+**Solution:** 
+- The given file was a *PCAPNG* file, and on looking that up, I installed *Wireshark* to view the contents in the file.
+- I exported the *TFTP* (Trivial File Transfer Protocol) objects of the given file by opening it on Wireshark and going to File -> Export Objects. 
+![tftp1.jpg](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/picoCTF/images/tftp1.JPG?raw=true)
+
+- I opened the files `instructions.txt` and `plan` and found the following strings of letters which seemed to be a cipher - ROT13 to be precise.
+```
+instructions.txt: GSGCQBRFAGRAPELCGBHEGENSSVPFBJRZHFGQVFTHVFRBHESYNTGENAFSRE.SVTHERBHGNJNLGBUVQRGURSYNTNAQVJVYYPURPXONPXSBEGURCYNA
+
+plan: VHFRQGURCEBTENZNAQUVQVGJVGU-QHRQVYVTRAPR.PURPXBHGGURCUBGBF
+```
+ 
+- On decoding both: 
+```
+TFTPDOESNTENCRYPTOURTRAFFICSOWEMUSTDISGUISEOURFLAGTRANSFER.FIGUREOUTAWAYTOHIDETHEFLAGANDIWILLCHECKBACKFORTHEPLAN
+
+IUSEDTHEPROGRAMANDHIDITWITH-DUEDILIGENCE.CHECKOUTTHEPHOTOS
+```
+
+- Here, it's implied that the program in `program.deb` file has to be installed and the code `DUEDILIGENCE` is used to view the data in the bitmap files.
+- I ran `sudo apt-get install ./program.deb` which installed *Steghide*, a common tool used in steganography.
+- I then used the `steghide` command with each of the 3 `.bmp` files, with `steghide extract -sf ./picture1.bmp`. It asked for a passphrase and here I entered `DUEDILIGENCE`. This resulted:
+```
+steghide: could not extract any data with that passphrase!
+```
+This could also be done with `steghide extract -sf ./picture1.bmp -p "DUEDILIGENCE"`.
+- I ran the same command with the second image and got the same output. But with the third picture I got the following output:
+```
+wrote extracted data to "flag.txt".
+```
+- I then ran `cat flag.txt` to read the flag.
+
+**Concepts learnt:**
+1. Pcap files & TFTP
+2. The use of Wireshark
+3. Steghide
+
+**Mistakes & other approaches:** 
+- Steghide didn't initially install properly by running the program file, so I did the installation outside of it.
+- For the cipher, I first tried Caesar cipher and it worked for the number 13 - which is essentially ROT13.
+
+**Resources:**
+- https://manpages.ubuntu.com/manpages/bionic/man1/steghide.1.html
+- https://cryptii.com/
 
 # tunn3l v1s10n
 
