@@ -89,5 +89,24 @@ Out of curiosity, to obtain a clearer image, I made the following changes:
 - https://en.wikipedia.org/wiki/BMP_file_format#Example_1
 - https://www.rapidtables.com/convert/number/decimal-to-hex.html
 - https://hexed.it/
+
 # m00nwalk
+
+**Flag:** `picoCTF{beep_boop_im_in_space}`
+
+**Solution:**
+- The challenge gave a WAV file. I put it through Audacity on spectrogram view, and found out that the pattern of the beats represented that of *SSTV*'s.
+-  To analyse this file, installed the tool called *RX-SSTV* after searching for tools to decode SSTV.
+- I played the audio from my media player and simultaneously recorded it on RX-SSTV, using the RX option of Scottie 1 as a hint stated "*What is the CMU mascot?, that might help select a RX option*" \[Scotty].
+This led to the formation of pixels from the beats of the audio which led to this final image containing the flag.
+  ![m00nwalk1.jpg](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/picoCTF/images/m00nwalk1.jpg?raw=true)
+
+**Concepts learnt:**
+1. SSTV (Slow-scan television) which is used to transmit images over radio waves.
+
+**Mistakes & other approaches:**
+- I tried a few other tools for decoding the audio file such as *qsstv* but I struggled with linking & recording the audio.
+
+**Resources:**
+- https://www.qsl.net/on6mu/rxsstv.htm
 
