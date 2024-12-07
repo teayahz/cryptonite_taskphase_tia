@@ -49,14 +49,61 @@ Answer: Install-WindowsUpdate -AcceptAll -AutoReboot. In `process.command_line`,
 - SIEM - Security Information & Event Management system that allows real-time monitoring.
 - Learnt how Elastic is used to monitor the events and logs 
 - Difference in FP & TP
+
 # Day 3
 
+**Challenge:**
+- This challenge required to analyse the logs of `frostypines-resorts` & `wareville-rails` using KQL (*Kibana Query Language*) for the blue task and perform a RCE (*Remote Code Execution*) on the http://frostypines.thm website for the red task.
+- In KQL, by setting the timeframe to between *11:30 and 12:00 of October 3, 2024*, and using queries and filters, the location where the web shell is uploaded can be found and also information such as the IP addresses that accessed it.
+- By first running the command `echo "[IP ADDRESS] frostypines.thm" >> /etc/hosts` in the terminal & then going to the `/admin` directory of the resort website, and creating & uploading the `shell.php` file that can expose the vulnerability as the room's image, shell commands can be run through the url http://frostypines.thm/media/images/rooms/shell.php?command=[command].
 
+**Questions:**
+1. *BLUE: Where was the web shell uploaded to?*
+Answer: /media/images/rooms/shell.php. It can be found by going to the logs of `frostypines-resorts`, using the query `message: shell.php` and filtering it with response code of 200.
+
+2. *BLUE: What IP address accessed the web shell?*
+Answer: 10.11.83.34. Using the previous step, the IP of the attacker can be found under the `clientip` column.
+
+3. *RED: What is the contents of the flag.txt?*
+Answer: THM{Gl1tch_Was_H3r3}. The flag file can first be read by going to http://frostypines.thm/media/images/rooms/shell.php?command=ls and then read with http://frostypines.thm/media/images/rooms/shell.php?command=cat+flag.txt.
+
+**Concepts:**
+- Log analysis with ELK (Elasticsearch, Logstash, Kibana) & KQL 
+- Learnt about RCE through insecure file upload vulnerabilities, which occurs when a file type for upload isn't specified.
 
 # Day 4
 
+**Challenge:**
+- This challenge began with emulating a spear phishing attack which has the ID T1566.001. To do this, the `Invoke-AtomicTest T1566.001 -TestNumbers 1` can be run on PowerShell. Previous files from the test can be cleaned up with the `-cleanup`argument and prerequisites can be checked with the `-CheckPrereq` argument. 
+- *Sysmon* event log can be cleared by going to `Applications and Services => Microsoft => Windows => Sysmon => Operational => Clear Log` in Event Viewer.
+- On running `Invoke-AtomicTest T1566.001 -TestNumbers 1` again, new events are visible in the Operational tab and its details can be viewed. These details also show the location of the current directory.
 
+**Questions:**
+1. *What was the flag found in the .txt file that is found in the same directory as the PhishingAttachment.xslm artefact?*
 
-# Day 5
+Answer: THM{GlitchTestingForSpearphishing}. It can be found in `C:\Users\Administrator\AppData\Local\Temp\` as `PhishingAttachment.txt`
 
+2. *What ATT&CK technique ID would be our point of interest?*
 
+Answer: T1059. This is the MITRE ATT&CK ID for scripting interpreter.
+
+3. *What ATT&CK subtechnique ID focuses on the Windows Command Shell?*
+
+Answer: T1059.003. This is the ID for command shell and can be found on Google.
+
+4. *What is the name of the Atomic Test to be simulated?*
+
+Answer: Simulate BlackByte Ransomware Print Bombing. With `Invoke-AtomicTest T1059.003 -ShowDetails`, this name can be seen along with `Suspicious Execution via Windows Command Shell`.
+
+5. *What is the name of the file used in the test?*
+
+Answer: Wareville_Ransomware.txt. This can also be seen from running the previous .
+
+6. *What is the flag found from this Atomic Test?*
+
+Answer: THM{R2xpdGNoIGlzIG5vdCB0aGUgZW5lbXk=}. Running `Invoke-AtomicTest T1059.003` creates a PDF which consists this flag. This is encoded in base64 and decodes to say "Glitch is not the enemy".
+
+**Concepts:**
+- MITRE ATT&CK which is a popular framework for understanding the different techniques and tactics that threat actors perform.
+
+# Day 6
