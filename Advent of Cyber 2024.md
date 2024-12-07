@@ -106,4 +106,4 @@ Answer: THM{R2xpdGNoIGlzIG5vdCB0aGUgZW5lbXk=}. Running `Invoke-AtomicTest T1059.
 **Concepts:**
 - MITRE ATT&CK which is a popular framework for understanding the different techniques and tactics that threat actors perform.
 
-# Day 6
+# Day 5
