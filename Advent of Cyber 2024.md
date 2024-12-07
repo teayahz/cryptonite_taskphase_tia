@@ -2,7 +2,7 @@
 
 **Challenge:**
 - The challenge starts with a YT to MP3 converter which downloads two files song.mp3 and somg.mp3. By using `file song.mp3` & `file somg.mp3` it can be found that somg.mp3 is actually a Windows shortcut (.lnk) which can contain malicious code.
-- By using `exiftool somg.mp3` it's found that there's a link to raw GitHub code in the command line arguments \[https://raw.githubusercontent.com/MM-WarevilleTHM/IS/refs/heads/main/IS.ps1]. This code sends stolen info into a C2 server. A part of this code can be searched on GitHub to trace back the user that posted this code by searching through the issues raised. \[https://github.com/Bloatware-WarevilleTHM/CryptoWallet-Search/issues/1]
+- By using `exiftool somg.mp3` it's found that there's a link to raw GitHub code in the command line arguments \[https://raw.githubusercontent.com/MM-WarevilleTHM/IS/refs/heads/main/IS.ps1\]. This code sends stolen info into a C2 server. A part of this code can be searched on GitHub to trace back the user that posted this code by searching through the issues raised. \[https://github.com/Bloatware-WarevilleTHM/CryptoWallet-Search/issues/1\]
 
 **Questions:**
 1. *Looks like the song.mp3 file is not what we expected! Run "exiftool song.mp3" in your terminal to find out the author of the song. Who is the author?*
@@ -12,10 +12,10 @@ Answer: Tyler Ramsbey. This can be done with `exiftool song.mp3`
 Answer: http://papash3ll.thm/data. It can be found in the raw code next to `$c2Url`
 
 3. *Who is M.M? Maybe his Github profile page would provide clues?*
-Answer: Mayor Malware. From \[https://github.com/MM-WarevilleTHM/M.M]
+Answer: Mayor Malware. From \[https://github.com/MM-WarevilleTHM/M.M\]
 
 4. *What is the number of commits on the GitHub repo where the issue was raised?*
-Answer: 1. \[https://github.com/Bloatware-WarevilleTHM/CryptoWallet-Search]
+Answer: 1. \[https://github.com/Bloatware-WarevilleTHM/CryptoWallet-Search\]
 
 **Concepts:**
 - Phishing scams, malvertising and malware that can be obtained from downloading files from such websites
