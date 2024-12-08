@@ -4,14 +4,14 @@
 
 **Solution:**
 - The challenge gives a website whose `/etc/passwd` file is to be read with *XML external entity injection* (XXE).
-- I opened a browser in Burp Suite and put in the provided URL & clicked on one of the Details buttons.
+- I opened a browser in Burp Suite and put in the provided URL & clicked on the third Details button.
 - This sent a POST request, which I sent to Repeater.
 - To perform XXE injection, I had to change the following script in the Request tab according to it.
 ```
 <?xml version="1.0" encoding="UTF-8"?>
 <data>
   <ID>
-    2
+    3
   </ID>
 </data>
 ```
