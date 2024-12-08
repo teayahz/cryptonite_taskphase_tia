@@ -3,7 +3,7 @@
 | --- | ------------------------------ | ------------ | ---------- | --------------- |
 | 1   | GDB baby step 1                | Reverse-Engg | Medium     | Done |
 | 2   | Trivial Flag Transfer Protocol | Forensics    | Medium     | Done |
-| 3   | SOAP                           | Web-Exp      | Medium     | Haven't started |
+| 3   | SOAP                           | Web-Exp      | Medium     | Done |
 | 4   | C3                             | Cryptography | Medium     | Done            |
 | 5   | buffer overflow 0              | Binary-Exp   | Medium     | Done |
 | 6   | ARMssembly 1                   | Reverse-Engg | Medium     | Done |
