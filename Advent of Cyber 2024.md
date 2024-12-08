@@ -140,12 +140,12 @@ can be changed to have an XXE payload which is
   </item> 
 </wishlist>
 ```
-This leaks the contents of the `/etc/hosts` file. This way contents of wish_[].txt files can be leaked with `[<!ENTITY payload SYSTEM "/var/www/html/wishes/wish_1.txt"> ]`
+This leaks the contents of the `/etc/hosts` file. This way contents of wish_[].txt files can be leaked with `[<!ENTITY payload SYSTEM "/var/www/html/wishes/wish_[].txt"> ]`
 
 **Questions:**
 1. *What is the flag discovered after navigating through the wishes?*
 
-Answer: THM{Brut3f0rc1n6_mY_w4y}. It is seen in Wish #15
+Answer: THM{Brut3f0rc1n6_mY_w4y}. It is seen in Wish #15 and can be done by setting a payload in wish_1.txt and doing intruder attacks for payload values from 1 to 20.
 
 2. *What is the flag seen on the possible proof of sabotage?*
 
