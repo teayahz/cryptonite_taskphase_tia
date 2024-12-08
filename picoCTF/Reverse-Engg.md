@@ -136,3 +136,89 @@ main:
 
 # vault-door-3
 
+**Flag:** `picoCTF{jU5t_a_s1mpl3_an4gr4m_4_u_1fb380}`
+
+**Solution:**
+- A Java source code is given and the password is to be found by analyzing it. 
+```java
+import java.util.*;
+
+class VaultDoor3 {
+    public static void main(String args[]) {
+        VaultDoor3 vaultDoor = new VaultDoor3();
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter vault password: ");
+        String userInput = scanner.next();
+	String input = userInput.substring("picoCTF{".length(),userInput.length()-1);
+	if (vaultDoor.checkPassword(input)) {
+	    System.out.println("Access granted.");
+	} else {
+	    System.out.println("Access denied!");
+        }
+    }
+
+    // Our security monitoring team has noticed some intrusions on some of the
+    // less secure doors. Dr. Evil has asked me specifically to build a stronger
+    // vault door to protect his Doomsday plans. I just *know* this door will
+    // keep all of those nosy agents out of our business. Mwa ha!
+    //
+    // -Minion #2671
+    public boolean checkPassword(String password) {
+        if (password.length() != 32) {
+            return false;
+        }
+        char[] buffer = new char[32];
+        int i;
+        for (i=0; i<8; i++) {
+            buffer[i] = password.charAt(i);
+        }
+        for (; i<16; i++) {
+            buffer[i] = password.charAt(23-i);
+        }
+        for (; i<32; i+=2) {
+            buffer[i] = password.charAt(46-i);
+        }
+        for (i=31; i>=17; i-=2) {
+            buffer[i] = password.charAt(i);
+        }
+        String s = new String(buffer);
+        return s.equals("jU5t_a_sna_3lpm18gb41_u_4_mfr340");
+    }
+}
+```
+- Here, the buffer is supposed to be equal to the string `jU5t_a_sna_3lpm18gb41_u_4_mfr340`, and the buffer string is put together based on the password entered which should be 32 characters long.
+- To find the password, we have to work from the final string.
+	- First 8 characters of the password is the same as that of the final string i.e. `jU5t_a_s`
+	- Next 8 characters of the password are reverse of the next 8 characters of the final buffer i.e. `na_3lpm1` which gives `1mpl3_an`
+	- The next few even places are filled accordingly:
+	  password[30] = buffer[16], password[28] = buffer[18], password[26] = buffer[20], password[24] = buffer[22], password[22] = buffer[24], password[20] = buffer[26], password[18] = buffer[28], password[16] = buffer[30] 
+	  which is `4[]r[]m[]4[]u[]1[]b[]8[]` and the remaining odd places are directly mapped from the buffer to finally give the last 16 characters: `4gr4m_4_u_1fb380`
+- The final password is now `jU5t_a_s1mpl3_an4gr4m_4_u_1fb380`
+
+**Concepts learnt:**
+1. Analyzing Java code and converting to C
+
+**Mistakes & other approaches:**
+- Instead of reversing this process manually, I tried to do this in a C program:
+```c
+#include<stdio.h>
+int main(){
+    char *password = "jU5t_a_sna_3lpm18gb41_u_4_mfr340";
+    char buffer[32];
+    int i;
+    for (i=0; i<8; i++) {
+        buffer[i] = password[i];
+    }
+    for (; i<16; i++) {
+        buffer[i] = password[23-i];
+    }
+    for (; i<32; i+=2) {
+        buffer[i] = password[46-i];
+    }
+    for (i=31; i>=17; i-=2) {
+        buffer[i] = password[i];
+    }
+    printf("%s",buffer);
+}
+```
+This easily gave the output required which was `jU5t_a_s1mpl3_an4gr4m_4_u_1fb380`
