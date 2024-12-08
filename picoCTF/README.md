@@ -11,7 +11,7 @@
 | 8   | Forbidden Paths                | Web-Exp      | Medium     | Done |
 | 9   | Custom encryption              | Cryptography | Medium     | Done           |
 | 10  | format string 0                | Binary-Exp   | Easy       | Done |
-| 11  | vault-door-3                   | Reverse-Engg | Medium     | Haven't started |
+| 11  | vault-door-3                   | Reverse-Engg | Medium     | Done |
 | 12  | m00nwalk                       | Forensics    | Medium     | Done |
 | 13  | Cookies                        | Web-Exp      | Easy       | Done |
 | 14  | miniRSA                        | Cryptography | Hard       | Haven't started |
