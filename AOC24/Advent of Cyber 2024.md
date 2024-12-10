@@ -161,8 +161,8 @@ Answer: THM{m4y0r_m4lw4r3_b4ckd00rs}. It's mentioned that the `/CHANGELOG` file 
 - The first part of this challenge required us to change the directory to `C:\Tools` and then run `.\JingleBells.ps1`. This acts as an EDR (endpoint detection and response) and monitors events, and so when `MerryChristmas.exe` is opened, YARA rule is broken and a window containing the flag pops up as a warning.
 ![day6.png](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/AOC24/img/day6.JPG?raw=true)
 
-- In the second part of the challenge, Floss is used for malware analysis. By running the command `PS C:\Tools\FLOSS> floss.exe C:\Tools\Malware\MerryChristmas.exe |Out-file C:\tools\malstrings.txt`, a .txt file is created which consists of the flag required an
-``
+- In the second part of the challenge, Floss is used for malware analysis. By running the command `PS C:\Tools\FLOSS> floss.exe C:\Tools\Malware\MerryChristmas.exe |Out-file C:\tools\malstrings.txt`, a .txt file is created which consists of the flag required.
+
 **Questions:**
 1. *What is the flag displayed in the popup window after the EDR detects the malware?*
 Answer: THM{GlitchWasHere}
