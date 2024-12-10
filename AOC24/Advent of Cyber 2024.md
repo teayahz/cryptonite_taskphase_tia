@@ -155,3 +155,24 @@ Answer: THM{m4y0r_m4lw4r3_b4ckd00rs}. It's mentioned that the `/CHANGELOG` file 
 - XML External Entity Injection
 - Approaches to limit such attacks such as including `ibxml_disable_entity_loader(true)` and removing `/etc/host` or `/etc/passwd` from requests
 
+# Day 6
+
+**Challenge:**
+- The first part of this challenge required us to change the directory to `C:\Tools` and then run `.\JingleBells.ps1`. This acts as an EDR (endpoint detection and response) and monitors events, and so when `MerryChristmas.exe` is opened, YARA rule is broken and a window containing the flag pops up as a warning.
+![day6.png](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/AOC24/img/day6.JPG?raw=true)
+
+- In the second part of the challenge, Floss is used for malware analysis. By running the command `PS C:\Tools\FLOSS> floss.exe C:\Tools\Malware\MerryChristmas.exe |Out-file C:\tools\malstrings.txt`, a .txt file is created which consists of the flag required an
+``
+**Questions:**
+1. *What is the flag displayed in the popup window after the EDR detects the malware?*
+Answer: THM{GlitchWasHere}
+
+2. *What is the flag found in the malstrings.txt document after running floss.exe, and opening the file in a text editor?*
+Answer: THM{HiddenClue}.
+
+**Concepts:**
+- Understand activity of malware using sandbox
+- YARA which is a set of rules to detect malware
+- Malware may not do anything if they detect they are in a sandbox
+
+
