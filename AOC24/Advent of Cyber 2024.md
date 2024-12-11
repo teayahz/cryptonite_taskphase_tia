@@ -265,3 +265,18 @@ $thandle = [CrtThread]::CreateThread(0, 0, $addr, 0, 0, 0)
 - Generating shellcodes and reverse shell using msfvenom
 - Executing shellcode on PowerShell
 
+# Day 9
+
+**Challenge:**
+- The site provided with the challenge had answers from three vendors to be assessed for their risks. After allotting a score for each of the three questions to each of the three vendors, the overall lowest risk score is found. One such question was:
+![day9.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/AOC24/img/day9.JPG?raw=true)
+
+**Questions:**
+1. *What does GRC stand for?*
+**Answer:** Governance, Risk, and Compliance
+
+2. *What is the flag you receive after performing the risk assessment?*
+**Answer:** THM{R15K_M4N4G3D}. This was obtained at the end of the assessment after picking the vendor with the lowest risk score.
+
+**Concepts:**
+- Risk Management - how they're done, why and where.
