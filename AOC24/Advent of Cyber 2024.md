@@ -175,7 +175,7 @@ Answer: THM{HiddenClue}.
 - YARA which is a set of rules to detect malware
 - Malware may not do anything if they detect they are in a sandbox
 
-# Day 8
+# Day 7
 
 **Challenge:**
 - I had to monitor the logs by navigating to the directory using `cd wareville-logs`. This contained `cloudtrail_log.json` & `rds.log`.
@@ -200,7 +200,7 @@ Answer: THM{HiddenClue}.
 
 6. *What type of access was assigned to the anomalous user?*
 **Answer:** AdministratorAccess.
-![day8.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/AOC24/img/day8.JPG?raw=true)
+![day7.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/AOC24/img/day7.JPG?raw=true)
 
 7. *Which IP does Mayor Malware typically use to log into AWS?*
 **Answer:** 53.94.201.69.
