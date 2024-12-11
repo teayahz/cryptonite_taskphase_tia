@@ -269,6 +269,7 @@ $thandle = [CrtThread]::CreateThread(0, 0, $addr, 0, 0, 0)
 
 **Challenge:**
 - The site provided with the challenge had answers from three vendors to be assessed for their risks. After allotting a score for each of the three questions to each of the three vendors, the overall lowest risk score is found. One such question was:
+
 ![day9.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/AOC24/img/day9.JPG?raw=true)
 
 **Questions:**
