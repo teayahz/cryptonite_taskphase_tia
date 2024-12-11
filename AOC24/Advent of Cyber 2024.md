@@ -175,4 +175,41 @@ Answer: THM{HiddenClue}.
 - YARA which is a set of rules to detect malware
 - Malware may not do anything if they detect they are in a sandbox
 
+# Day 8
 
+**Challenge:**
+- I had to monitor the logs by navigating to the directory using `cd wareville-logs`. This contained `cloudtrail_log.json` & `rds.log`.
+- The command `jq -r '["Event_Time", "Event_Source", "Event_Name", "User_Name", "Source_IP"],(.Records[] | select(.userIdentity.userName == PLACEHOLDER) | [.eventTime, .eventSource, .eventName, .userIdentity.userName // "N/A", .sourceIPAddress // "N/A"]) | @tsv' cloudtrail_log.json | column -t -s $'\t'` can be used to monitor most of the actions required for this challenge, and the `PLACEHOLDER` can be replaced with the username whose activity is to be monitored, and some fields like `userAgent` can be added for the requirement. 
+- To find the bank account number being used, `grep INSERT rds.log` can be run. `rds.log` is the Relational Database Service which is based on CloudWatch.
+
+**Questions:**
+1. *What is the other activity made by the user glitch aside from the ListObject action?*
+**Answer:** PutObject. from the command `jq -r '["Event_Time", "Event_type", "Event_Name", "User_Name", "Source_IP", "User_Agent"],(.Records[] | select(.userIdentity.userName == "glitch") | [.eventTime,.eventType, .eventName, .userIdentity.userName //"N/A",.sourceIPAddress //"N/A", .userAgent //"N/A"]) | @tsv' cloudtrail_log.json | column -t -s $'\t'` under Event Name
+
+2. *What is the source IP related to the S3 bucket activities of the user glitch?*
+**Answer:** 53.94.201.69. which is found under Source_IP
+
+3. *Based on the eventSource field, what AWS service generates the ConsoleLogin event?*
+**Answer:** signin.amazonaws.com.
+
+4. *When did the anomalous user trigger the ConsoleLogin event?*
+**Answer:** 2024-11-28T15:21:54Z. The anomalous user is glitch and viewed under the command `jq -r '["Event_Time", "Event_Source", "Event_Name", "User_Name", "Source_IP"], (.Records[] | select(.sourceIPAddress=="53.94.201.69") | [.eventTime, .eventSource, .eventName, .userIdentity.userName // "N/A", .sourceIPAddress // "N/A"]) | @tsv' cloudtrail_log.json | column -t -s $'\t'`
+
+5. *What was the name of the user that was created by the mcskidy user?*
+**Answer:** glitch
+
+6. *What type of access was assigned to the anomalous user?*
+**Answer:** AdministratorAccess.
+![day8.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/AOC24/img/day8.JPG?raw=true)
+
+7. *Which IP does Mayor Malware typically use to log into AWS?*
+**Answer:** 53.94.201.69.
+
+8. *What is McSkidy's actual IP address?*
+**Answer:** 31.210.15.79. from `jq -r '["Event_Time","Event_Source","Event_Name", "User_Name","User_Agent","Source_IP"],(.Records[] | select(.userIdentity.userName=="mcskidy") | [.eventTime, .eventSource, .eventName, .userIdentity.userName // "N/A",.userAgent // "N/A",.sourceIPAddress // "N/A"]) | @tsv' cloudtrail_log.json | column -t -s $'\t'`
+
+9. *What is the bank account number owned by Mayor Malware?*
+**Answer:** 394 6912 7723 1294. by running `grep INSERT rds.log`
+
+**Concepts:**
+- AWS (Amazon Web Services) and platforms under it such as CloudWatch & CloudTrail which uses JSON formatting, and this JSON data can be filtered with JQ.
