@@ -192,5 +192,60 @@ Decrypted text: picoCTF{custom_d2cr0pt6d_dc499538}
 
 # miniRSA
 
+**Flag:** `picoCTF{n33d_a_lArg3r_e_606ce004}`
 
-![output](./output.png)
+**Solution:**
+- The `ciphertext` file consists of three integers which had to be used to decrypt the message encrypted in RSA.
+```
+N: 29331922499794985782735976045591164936683059380558950386560160105740343201513369939006307531165922708949619162698623675349030430859547825708994708321803705309459438099340427770580064400911431856656901982789948285309956111848686906152664473350940486507451771223435835260168971210087470894448460745593956840586530527915802541450092946574694809584880896601317519794442862977471129319781313161842056501715040555964011899589002863730868679527184420789010551475067862907739054966183120621407246398518098981106431219207697870293412176440482900183550467375190239898455201170831410460483829448603477361305838743852756938687673
+e: 3
+
+ciphertext (c): 2205316413931134031074603746928247799030155221252519872649649212867614751848436763801274360463406171277838056821437115883619169702963504606017565783537203207707757768473109845162808575425972525116337319108047893250549462147185741761825125 
+```
+- After looking up the significance of a small e value, I found that it could make decoding much more simpler and thus the encryption much less strong. I found that the original message m could now be found with the formula m = **$\sqrt[3]{C}$**  as C seems to be much lesser than N and e here is 3. 
+- Now I made a Python program to calculate the the cube root of this large integer C, and also to convert the integer m obtained to the original message M by converting to hex and then to ASCII.
+```python
+def cube_root(n):
+    # Using integer arithmetic to calculate the cube root
+    low, high = 0, n
+    while low < high:
+        mid = (low + high + 1) // 2
+        if mid ** 3 <= n:
+            low = mid
+        else:
+            high = mid - 1
+    return low
+
+def int_to_ascii(num_str):
+    num = int(num_str)
+    root = cube_root(num)
+    hexa = hex(root)[2:]  # removes the '0x' prefix
+    text = ''
+    for i in range(0, len(hexa), 2):
+        hex_pair = hexa[i:i+2]
+        if len(hex_pair) == 2:
+            text += chr(int(hex_pair, 16))
+    
+    return text
+
+C = "2205316413931134031074603746928247799030155221252519872649649212867614751848436763801274360463406171277838056821437115883619169702963504606017565783537203207707757768473109845162808575425972525116337319108047893250549462147185741761825125"
+flag = int_to_ascii(C)
+print(f"Flag: {flag}")
+
+```
+
+  
+**Concepts learnt:**
+1. RSA and the working of its encryption and significance of numbers m, e, C, N, p, q & d
+2. The significance of the public encryption exponent e & the 2048-bit key N (617 digits) as when e is small and $m^e$ is less than N, m is simply $\sqrt[e]{C}$ but when $m^n$ > N, the padding constant k is to be found and m = $\sqrt[e]{C+k.N}$
+3. Also learnt that the value `65537` is often used as e which is a Fermat number.
+   
+**Mistakes & other approaches:**
+- While calculating cube root for such large integers, the answer gets printed in an exponent form and loses precision which didn't help me in this case.
+- The answer was also retrieved by putting in the values in https://www.dcode.fr/rsa-cipher.
+  
+**Resources:**
+- https://www.javatpoint.com/rsa-encryption-algorithm
+- https://ir0nstone.gitbook.io/crypto/rsa/public-exponent-attacks/small-e
+- https://en.wikipedia.org/wiki/RSA_(cryptosystem)#Decryption
+  
