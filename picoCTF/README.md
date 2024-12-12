@@ -14,5 +14,5 @@
 | 11  | vault-door-3                   | Reverse-Engg | Medium     | Done |
 | 12  | m00nwalk                       | Forensics    | Medium     | Done |
 | 13  | Cookies                        | Web-Exp      | Easy       | Done |
-| 14  | miniRSA                        | Cryptography | Hard       | Haven't started |
+| 14  | miniRSA                        | Cryptography | Hard       | Done |
 | 15  | flag leak                      | Binary-Exp   | Medium     | Haven't started |
