@@ -40,7 +40,7 @@
 
 **Category: Cryptography**
 
-- In this challenge, I had to fool Alice into thinking I was Bob, so the message I sent to be encrypted in base64 from MD5 was 'Bob' in option 1.
+- In this challenge, I had to fool Alice into thinking I was Bob, so the message I sent to be encrypted was 'Bob' in option 1.
 ```bash
  _             ____                      _        ____                  _
 | |    __ _   / ___|__ _ ___  __ _    __| | ___  |  _ \ __ _ _ __   ___| |
