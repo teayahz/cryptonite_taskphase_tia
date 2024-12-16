@@ -27,6 +27,7 @@
 - I explored this area on Google Maps and found that the *DLF Cyber Hub* nearby was the shopping complex being referred to.
 - I googled `3d billboard in gurgaon` and saw one of Vivo, but Hyundai turned out to be the company in question.
 - I searched for `hyundai concert` which showed a list of Hyundai Spotlight concerts of the year & one of them was *Shankar Ehsaan Loy* at *KTPO, Bengaluru* on *October 26th, 2024*.
+
 ### Flag: `nite{Hyundai,Shankar_Ehsaan_Loy,KTPO}`
 
 **Resources:**
@@ -92,6 +93,7 @@ Vault Unlocked! The flag is: nite{El_Pr0f3_0f_Prec1s10n_Pl4ns}
 3. Crack the Vault
 4. Exit
 ```
+
 ### Flag: `nite{El_Pr0f3_0f_Prec1s10n_Pl4ns}`
 
 ****
@@ -116,7 +118,8 @@ Vault Unlocked! The flag is: nite{El_Pr0f3_0f_Prec1s10n_Pl4ns}
 - The QR code led to a WAV file and so I opened it in Audacity in Spectrogram view.
 ![freak5.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/niteCTF24/files/freak5.JPG?raw=true)
 - So, `nite{4_wannabe_` is the first part of the flag. But we still had to decipher the second part. 
-- Under the first part of the flag in the WAV file, is Morse code. This decoded to `FREEKEY`. This seemed to be the key to a cipher and my best bet was the Vigenère cipher. So, the second half was `1nt3rn3t_my5tery}`.
+- Under the first part of the flag in the WAV file in Audacity, is beeps for Morse code. This decoded to `FREEKEY`. This seemed to be the key to a cipher and my best bet was the _Vigenère_ cipher. So, the second half turned out to be `1nt3rn3t_my5tery}`.
+
 ### Flag: `nite{4_wannabe_1nt3rn3t_my5tery}`
 
 ****
@@ -263,6 +266,7 @@ Vault Unlocked! The flag is: nite{El_Pr0f3_0f_Prec1s10n_Pl4ns}
 - So, I installed the Buckbeak font into my system, opened a Word file, and I copy pasted the subtitle with this font.
 ![buck5.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/niteCTF24/files/buck5.JPG?raw=true)
 This had to be tweaked a bit to get the correct flag.
+
 ### Flag: `nite{w3_b0th_kn0w_wh0_i5_ug1y_h3r3_ma1f0y}`
 
 **Resources:**
