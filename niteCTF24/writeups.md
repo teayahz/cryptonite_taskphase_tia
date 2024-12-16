@@ -111,6 +111,7 @@ Vault Unlocked! The flag is: nite{El_Pr0f3_0f_Prec1s10n_Pl4ns}
 - The numbers represent line : word : character of the poem and on doing that, I get `httpsdiscordggAHj7R2Qd` which when tweaked to fit the format, is an invite link to the freakada-3301 Discord server. 
 - Apart from a voice channel that played a song (worse than rick-roll) on loop, there was a Discord bot asking for its *prime*. This was 3301. It then asked for the result of `3301*x*y` where x and y were integral parts of the original image (dimensions 449x503), which was 745520947. 
 - After sending that, the bot gave 2 values `13.34508015959565, 74.79629600750295` that could only mean coordinates. This was one of the photos under the reviews of the location.
+
 ![freak4.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/niteCTF24/files/freak4.JPG?raw=true)
 - The QR code led to a WAV file and so I opened it in Audacity in Spectrogram view.
 ![freak5.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/niteCTF24/files/freak5.JPG?raw=true)
