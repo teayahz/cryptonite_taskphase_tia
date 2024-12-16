@@ -341,3 +341,21 @@ $thandle = [CrtThread]::CreateThread(0, 0, $addr, 0, 0, 0)
 **Concepts:**
 - Wi-Fi and the WPA/WPA2 cracking attack which is based on a four-way handshake
 - airodump-ng which is used for pocket captures & aireplay-ng which is used for cracking WEP and WPA-PSK keys
+
+Day 12
+
+**Challenge:**
+- The challenge asks to transfer over $2000 from `glitch` with account number `101` to the account `111`. 
+- I opened a browser in Burp Suite after configuring some settings, and pasted the given URL `http://MACHINE_IP:5000`. This account had $2000 in balance.
+- Now, the activity on this site would be tracked in the Proxy tab of Burp Suite.
+- On making a transition of $1000 from the site, a `HTTP POST` request was made under /transfer. I sent this to Repeater.
+- I duplicated these requests 3-4 times, in Repeater, grouped them all together and clicked on Send.
+- Now, the balance was negative as more than required had been transferred, and the flag's found in `/dashboard`
+
+**Questions:**
+1. *What is the flag value after transferring over $2000 from Glitch's account?*
+**Answer:** `THM{WON_THE_RACE_007}`, this was obtained by visiting `http://MACHINE_IP:5000/dashboard` after sending the requests.
+
+**Concepts:**
+- Vulnerabilities in HTTP2
+- Timing attacks such as information disclosures and race conditions and the use of Burp Suite Repeater to take in multiple requests.
