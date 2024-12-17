@@ -57,4 +57,24 @@ picoCTF{7h3_cu570m3r_15_n3v3r_SEGFAULT_f89c1405}
 
 # flag leak
 
+**Flag:** `picoCTF{L34k1ng_Fl4g_0ff_St4ck_95f60617}`
 
+**Solution:**
+- The challenge gave a source code and an executable file `vuln`.
+- The vulnerability was present in the `printf` statement, where a format string wasn't specified. This could be exploited by entering in input such as `%x %x %x` or `%s` and the stack could be leaked. 
+- To leak contents of the stack, we can dump it using a for loop that tests each position of the stack and greps for the flag. For this, I ran the command `for i in {0..30}; do echo "%$i\$s" | nc saturn.picoctf.net 50753 | grep { && echo "position: $i"; done`
+```bash
+CTF{L34k1ng_Fl4g_0ff_St4ck_95f60617}
+position: 24
+```
+The position is 24 so the flag can also be retrieved by entering `%24$s` as input where it points to the 24th member of the stack and prints it as a string.
+
+**Concepts learnt:**
+1. Vulnerabilities when a format string specifier isn't used
+2. Using shell to chain commands and test each position of the stack
+
+**Mistakes & other approaches:**
+- I also tried using GDB to disassemble the file and set a breakpoint after the command where the flag is read but ran into errors while trying to execute the file.
+
+**Resources:**
+- https://owasp.org/www-community/attacks/Format_string_attack
