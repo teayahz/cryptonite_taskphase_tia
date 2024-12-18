@@ -359,3 +359,51 @@ $thandle = [CrtThread]::CreateThread(0, 0, $addr, 0, 0, 0)
 **Concepts:**
 - Vulnerabilities in HTTP2
 - Timing attacks such as information disclosures and race conditions and the use of Burp Suite Repeater to take in multiple requests.
+
+# Day 13
+
+**Challenge:**
+- First, I had to open the given port in the AttackBox's Firefox & I proxied the traffic to Burp Suite.
+- Now, on clicking the Track button in the site, the WebSocket traffic is intercepted in the Proxy tab.
+- The userId value here could be changed to any other value to view other Community Reports.
+
+**Questions:**
+1. *What is the value of Flag1?*
+**Answer:** THM{dude_where_is_my_car}. It's under the Community Reports of the userId 8.
+
+2. *What is the value of Flag2?*
+**Answer:** THM{my_name_is_malware.\_mayor_malware}. By sending a message and then changing the userId to 8, this can be found. 
+
+**Concepts:**
+- WebSockets and why they're used but also how they possess security risks
+- Exploiting WebSocket using Burp Suite Proxy
+
+# Day 14
+
+**Challenge:**
+- To perform a man-in-the-middle attack, I had to first list the given IP and site into /etc/hosts using `echo "MACHINE_IP gift-scheduler.thm" >> /etc/hosts`. This can be verified with `cat /etc/hosts`
+- Now on opening https://gift-scheduler.thm, a warning page is seen and on clicking `Advanced`, the certificate can be viewed and it is found to be self-signed.
+- I clicked on `Accept the Risk and Continue` and logged in with the given credentials.
+- I opened Burp Suite and set the port 8080 to proxy listeners. 
+- I ran the script `route-elf-traffic.sh` which was present in `/root/Rooms/AoC2024/Day14` to simulate user's requests to the scheduler.
+- Opening HTTP History tab in Proxy, I saw the login POST requests and clicking on them shows usernames & passwords.
+
+**Questions:**
+1. *What is the name of the CA that has signed the Gift Scheduler certificate?*
+**Answer:** THM. It's under organization name while clicking on View Certificate for the site.
+
+2. *Look inside the POST requests in the HTTP history. What is the password for the `snowballelf` account?*
+**Answer:** c4rrotn0s3. 
+
+3. *Use the credentials for any of the elves to authenticate to the Gift Scheduler website. What is the flag shown on the elves’ scheduling page?*
+**Answer:** THM{AOC-3lf0nth3sh3lf}. By using `snowballelf`'s credentials.
+
+4. *What is the password for Marta May Ware’s account?*
+**Answer:** H0llyj0llySOCMAS!. 
+
+5. *Mayor Malware finally succeeded in his evil intent: with Marta May Ware’s username and password, he can finally access the administrative console for the Gift Scheduler. G-Day is cancelled!  What is the flag shown on the admin page?*
+**Answer:** THM{AoC-h0wt0ru1nG1ftD4y}. 
+
+**Concepts:**
+- Certificates on a website and the difference when it's self-signed and CA verified.
+- Man in the middle attack on self-signed certificates.
