@@ -407,3 +407,30 @@ $thandle = [CrtThread]::CreateThread(0, 0, $addr, 0, 0, 0)
 **Concepts:**
 - Certificates on a website and the difference when it's self-signed and CA verified.
 - Man in the middle attack on self-signed certificates.
+
+# Day 15
+
+**Challenge:**
+- The Event Viewer is used to view the history of system activity, security events and security behaviours.
+- PowerShell is used to audit GPOs and users.
+- History of commands used in PowerShell are stored in `%APPDATA%\Microsoft\Windows\PowerShell\PSReadLine\ConsoleHost_history.txt`.
+
+**Questions:**
+1. *On what day was Glitch_Malware last logged in? Answer format: DD/MM/YYYY*
+**Answer:** 07/11/2024. This is under the security tab of Event Viewer.
+
+2. *What event ID shows the login of the Glitch_Malware user?*
+**Answer:** 4624.
+
+3. *Read the PowerShell history of the Administrator account. What was the command that was used to enumerate Active Directory users?*
+**Answer:** Get-ADUser -Filter * -Properties MemberOf | Select-Object Name. This can be viewed in the ConsoleHost_history.txt file in the PowerShell AppData.
+
+4. *Look in the PowerShell log file located in `Application and Services Logs -> Windows PowerShell`. What was Glitch_Malware's set password?*
+**Answer:** SuperSecretP@ssw0rd!. The term `password` can be searched under these logs.
+
+5. *Review the Group Policy Objects present on the machine. What is the name of the installed GPO?*
+**Answer:** Malicious GPO - Glitch_Malware Persistence. It can be found by entering `Get-GPO -All` in PowerShell under one of the display names.
+
+**Concepts:**
+- Active Directory, which is a technology by Microsoft that provides a variety of network services.
+
