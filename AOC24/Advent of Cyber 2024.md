@@ -434,3 +434,30 @@ $thandle = [CrtThread]::CreateThread(0, 0, $addr, 0, 0, 0)
 **Concepts:**
 - Active Directory, which is a technology by Microsoft that provides a variety of network services.
 
+# Day 16
+
+**Challenge:**
+- First, I got credentials to log into Microsoft Azure and used the Cloud Shell provided and my credentials could be seen with `az ad signed-in-user show`.
+- Azure Command Line Interface has the following format: `az GROUP SUBGROUP ACTION OPTIONAL_PARAMETERS`
+- The users could be viewed with `az ad user list`. This is one user in the list to be investigated.
+![day16.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/AOC24/img/day16.JPG?raw=true)
+- Groups can be seen with `az ad group list`.
+- `az role assignment list --assignee REPLACE_WITH_SECRET_RECOVERY_GROUP_ID --all` shows that the Secret Recovery Group has roles of Key Vault Reader and Key Vault Secrets User.
+- `az keyvault list` lists the accessible keyvaults.
+
+**Questions:**
+1. *What is the password for backupware that was leaked?*
+**Answer:** R3c0v3r_s3cr3ts!. It can be viewed under `officeLocation`  of `wvusr-backupware`after running `az ad user list --filter "startsWith('wvusr-', displayName)"`
+
+2. *What is the group ID of the Secret Recovery Group?*
+**Answer:** 7d96660a-02e1-4112-9515-1762d0cb66b7. from `az ad group list` 
+
+3. *What is the name of the vault secret?*
+**Answer:** aoc2024. Found under `az keyvault secret list --vault-name warevillesecrets` as a name in the keyvault list is warevillesecrets.
+
+4. *What are the contents of the secret stored in the vault?*
+**Answer:** WhereIsMyMind1999. (*is that a Fight Club reference?*) Contents can be viewed by entering `az keyvault secret show --vault-name warevillesecrets --name aoc2024` 
+
+**Concepts:**
+- Microsoft Azure which is a cloud computing platform.
+- Using Azure Cloud Shell and the Azure CLI
