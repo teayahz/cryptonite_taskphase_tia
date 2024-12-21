@@ -461,3 +461,26 @@ $thandle = [CrtThread]::CreateThread(0, 0, $addr, 0, 0, 0)
 **Concepts:**
 - Microsoft Azure which is a cloud computing platform.
 - Using Azure Cloud Shell and the Azure CLI
+
+# Day 17
+
+**Challenge:**
+- First, I had to sanitize and properly parse the CCTV logs.
+- The CCTV logs contained a list of successful and failed login attempts and information of the CCTV footage being watched and downloaded.
+- `index=cctv_feed | stats count by Event` allows to visualise the events occurred.
+- It's found that the IP address linked with the session ID that had most of the login fails is linked to another session ID - `lsr1743nkskt3r722momvhjcs3` which can be investigated further.
+- The attacker seemed to have logged in, watched some camera footage, downloaded and deleted them.
+
+**Questions:**
+1. *Extract all the events from the cctv_feed logs. How many logs were captured associated with the successful login?*
+**Answer:** 642. Using the filter `index=cctv_feed *success*`
+
+2. *What is the Session_id associated with the attacker who deleted the recording?*
+**Answer:** rij5uu4gt204q0d3eb7jj86okt. This is the same as the Session_id captured for failed logins viewed through `index=cctv_feed *failed* | table _time UserName Event Session_id`
+
+3. *What is the name of the attacker found in the logs, who deleted the CCTV footage?*
+**Answer:** mmalware. Using `index=cctv_feed *lsr1743nkskt3r722momvhjcs3*`, the username associated with the attacks is obtained.
+
+**Concepts:**
+- Log analysis using Splunk
+
