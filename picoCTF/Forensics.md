@@ -110,3 +110,152 @@ This led to the formation of pixels from the beats of the audio which led to thi
 **Resources:**
 - https://www.qsl.net/on6mu/rxsstv.htm
 
+# Blast from the Past
+
+**Flag:** `picoCTF{71m3_7r4v311ng_p1c7ur3_12e0c36b}`
+
+**Solution:**
+- The initial image was an ordinary photo of a wall with a painting. 
+- Using exiftool with the command `exiftool -G1 -a -s original.jpg1`, metadata can be viewed including the timestamps which need to be changed to `1970:01:01 00:00:00.001+00:00`.
+- This could be done by either editing the hex data to these values or using exiftool commands. 
+- First, I used the hex editor to modify CreateDate, ModifyDate & DateTimeOriginal individually but it could be done with `exiftool -AllDates='1970:01:01 00:00:00.001' original_modified.jpg`. The output after connecting to the checker program was: 
+```bash
+MD5 of your picture:
+c6503c2f4872c83ced315f795068cfb3  test.out
+
+Checking tag 1/7
+Looking at IFD0: ModifyDate
+Looking for '1970:01:01 00:00:00'
+Found: 1970:01:01 00:00:00
+Great job, you got that one!
+
+Checking tag 2/7
+Looking at ExifIFD: DateTimeOriginal
+Looking for '1970:01:01 00:00:00'
+Found: 1970:01:01 00:00:00
+Great job, you got that one!
+
+Checking tag 3/7
+Looking at ExifIFD: CreateDate
+Looking for '1970:01:01 00:00:00'
+Found: 1970:01:01 00:00:00
+Great job, you got that one!
+
+Checking tag 4/7
+Looking at Composite: SubSecCreateDate
+Looking for '1970:01:01 00:00:00.001'
+Found: 1970:01:01 00:00:00.703
+Oops! That tag isn't right. Please try again.
+```
+- SubSec records fractions of seconds and the subsec values could also be changed with `exiftool -SubSecCreateDate='1970:01:01 00:00:00.001' -SubSecDateTimeOriginal='1970:01:01 00:00:00.001' -SubSecModifyDate='1970:01:01 00:00:00.001' original_modified.jpg`. This was just changing the original `703` subsec to `001`.
+```bash
+MD5 of your picture:
+e93c590c522cddc22aa5364bfc44cc70  test.out
+
+Checking tag 1/7
+Looking at IFD0: ModifyDate
+Looking for '1970:01:01 00:00:00'
+Found: 1970:01:01 00:00:00
+Great job, you got that one!
+
+Checking tag 2/7
+Looking at ExifIFD: DateTimeOriginal
+Looking for '1970:01:01 00:00:00'
+Found: 1970:01:01 00:00:00
+Great job, you got that one!
+
+Checking tag 3/7
+Looking at ExifIFD: CreateDate
+Looking for '1970:01:01 00:00:00'
+Found: 1970:01:01 00:00:00
+Great job, you got that one!
+
+Checking tag 4/7
+Looking at Composite: SubSecCreateDate
+Looking for '1970:01:01 00:00:00.001'
+Found: 1970:01:01 00:00:00.001
+Great job, you got that one!
+
+Checking tag 5/7
+Looking at Composite: SubSecDateTimeOriginal
+Looking for '1970:01:01 00:00:00.001'
+Found: 1970:01:01 00:00:00.001
+Great job, you got that one!
+
+Checking tag 6/7
+Looking at Composite: SubSecModifyDate
+Looking for '1970:01:01 00:00:00.001'
+Found: 1970:01:01 00:00:00.001
+Great job, you got that one!
+
+Checking tag 7/7
+Timezones do not have to match, as long as it's the equivalent time.
+Looking at Samsung: TimeStamp
+Looking for '1970:01:01 00:00:00.001+00:00'
+Found: 2023:11:20 20:46:21.420+00:00
+Oops! That tag isn't right. Please try again.
+```
+- The last task was to edit the TimeStamp. With the command `exiftool -time:all -v3 original.jpg`, I noticed that the Samsung tags were towards the end of hex data and was originally `Image_UTC_Data1700513181]`. The numbers are time in Unix timestamp format which is widely used in computing. 
+- I used a website to convert this to `1970:01:01 00:00:00.001` and found it's just `0`, but for the format it's `0000000001` as there's 1 subsec. I edited this with the hex editor and put it again through the checker program to get the flag: 
+```bash
+MD5 of your picture:
+29b424e2e78cd7d66fa69901a43434a6  test.out
+
+Checking tag 1/7
+Looking at IFD0: ModifyDate
+Looking for '1970:01:01 00:00:00'
+Found: 1970:01:01 00:00:00
+Great job, you got that one!
+
+Checking tag 2/7
+Looking at ExifIFD: DateTimeOriginal
+Looking for '1970:01:01 00:00:00'
+Found: 1970:01:01 00:00:00
+Great job, you got that one!
+
+Checking tag 3/7
+Looking at ExifIFD: CreateDate
+Looking for '1970:01:01 00:00:00'
+Found: 1970:01:01 00:00:00
+Great job, you got that one!
+
+Checking tag 4/7
+Looking at Composite: SubSecCreateDate
+Looking for '1970:01:01 00:00:00.001'
+Found: 1970:01:01 00:00:00.001
+Great job, you got that one!
+
+Checking tag 5/7
+Looking at Composite: SubSecDateTimeOriginal
+Looking for '1970:01:01 00:00:00.001'
+Found: 1970:01:01 00:00:00.001
+Great job, you got that one!
+
+Checking tag 6/7
+Looking at Composite: SubSecModifyDate
+Looking for '1970:01:01 00:00:00.001'
+Found: 1970:01:01 00:00:00.001
+Great job, you got that one!
+
+Checking tag 7/7
+Timezones do not have to match, as long as it's the equivalent time.
+Looking at Samsung: TimeStamp
+Looking for '1970:01:01 00:00:00.001+00:00'
+Found: 1970:01:01 00:00:00.001+00:00
+Great job, you got that one!
+
+You did it!
+picoCTF{71m3_7r4v311ng_p1c7ur3_12e0c36b}
+```
+
+**Concepts learnt:**
+1. Editing and viewing data through ExifTool
+2. Epoch unix timestamps
+
+**Mistakes & other approaches:**
+- Initially, I wasn't aware ExifTool could be used to edit metadata so I did it in the hex editor individually
+
+**Resources:**
+- https://hexed.it/
+- https://www.epochconverter.com/
+- https://stackoverflow.com/questions/78185037/how-to-edit-the-samsung-trailer-tag-timestamp
