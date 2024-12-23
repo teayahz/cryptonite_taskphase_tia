@@ -262,3 +262,44 @@ print(f"Flag: {flag}")
 **Resources:**
 - https://www.dcode.fr/monoalphabetic-substitution
 
+# Pixelated
+
+**Flag:** `picoCTF{d72ea4af}`
+
+**Solution:**
+- The challenge provides two images `scrambled1.png` & `scrambled2.png`. These are encrypted with *visual cryptography* which is where the hidden message is revealed by layering or stacking the two images.
+- Since the images had pixels of various RGB values, I thought the output image needed could be obtained by adding the given two images, that is replacing each pixel with the sum of RGB values of the corresponding pixels of the two scrambled images. 
+- I made a program to do this using Python's *NumPy* and *Pillow* modules. 
+```python
+from PIL import Image
+import numpy as np
+
+image1_path = "scrambled1.png"
+image2_path = "scrambled2.png"
+output_path = "output.png"
+
+image1 = Image.open(image1_path).convert("RGB")
+image2 = Image.open(image2_path).convert("RGB")
+    
+pixels1 = np.array(image1, dtype=np.uint8)
+pixels2 = np.array(image2, dtype=np.uint8)
+added_pixels = np.clip(pixels1 + pixels2, 0, 255).astype(np.uint8) #adding the rgb values & capping it at 255
+
+result_image = Image.fromarray(added_pixels, mode="RGB")
+
+result_image.save(output_path)
+print(f"Resulting image saved to {output_path}")
+```
+- This worked and the following image was `output.png`
+![output.png](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/picoCTF/images/pixelated.png?raw=true)
+
+**Concepts learnt:**
+1. Visual cryptography
+2. Few functions in NumPy and PIL
+
+**Mistakes & other approaches:**
+- I tried viewing the hidden image by lowering the transparency of one and layering it over the other and even adjusting contrast & brightness, but it didn't seem to give anything clear.
+
+**Resources:**
+- https://www.codecademy.com/resources/docs/pillow/image/fromarray
+- https://en.wikipedia.org/wiki/Visual_cryptography
