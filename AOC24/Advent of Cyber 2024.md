@@ -504,3 +504,102 @@ $thandle = [CrtThread]::CreateThread(0, 0, $addr, 0, 0, 0)
 **Concepts:**
 - Understanding of AI chatbots
 - Prompt injection done through chatbots
+
+# Day 19
+
+**Challenge:**
+- By executing the game file using `cd /home/ubuntu/Desktop/TryUnlockMe && ./TryUnlockMe` and exploring the area a bit, we see a penguin asking for an OTP.
+- Frida can be used to intercept all of this game's functions in the `libaocgame.so` library using the trace command `frida-trace ./TryUnlockMe -i 'libaocgame.so!*'`. 
+- Functions triggered now will be recorded in the shell, and so `_Z7set_otpi` has the function for OTP.
+- The `.so` files JavaScript codes can be opened in Visual Studio Code using `code .` after running `cd /home/ubuntu/Desktop/TryUnlockMe/__handlers__/libaocgame.so/`.
+- The `_Z7set_otpi` file can be modified to display the required OTP as a parameter.
+```javascript
+defineHandler({
+  onEnter(log, args, state) {
+    log('_Z7set_otpi()');
+    log("Parameter:" + args[0].toInt32());
+  },
+  onLeave(log, retval, state) {
+  }
+});
+```
+- I got the OTP as `231283` and the first flag. I moved on to the next stage which had a penguin selling three items worth $5, $10 and $1000000. Coins could be collected by using the PC in the area. On buying an item, `_Z17validate_purchaseiii()` was triggered and I modified the code for it to find the parameters for item ID, item cost, player's coins which were parameters 1, 2, 3 respectively.
+```javascript
+defineHandler({
+  onEnter(log, args, state) {
+    log('_Z17validate_purchaseiii()');
+    log('PARAMETER 1: '+ args[0]);
+    log('PARAMETER 2: '+ args[1]);
+    log('PARAMETER 3: '+ args[2]);
+
+  },
+
+  onLeave(log, retval, state) {
+      
+  }
+});
+```
+- So, the item could be bought by setting item cost to 0 with the following modified code:
+```javascript
+defineHandler({
+  onEnter(log, args, state) {
+    log('_Z17validate_purchaseiii()');
+    args[1] = ptr(0)
+
+  },
+
+  onLeave(log, retval, state) {
+      
+  }
+});
+```
+- This gave the second flag, and I moved on to the third stage which featured a penguin asking for a biometric check which triggered `_Z16check_biometricsPKc`.
+- On opening the file, a line could again be added to check for parameters, but also another to check for the log return value:
+```javascript
+defineHandler({
+  onEnter(log, args, state) {
+    log('_Z16check_biometricsPKc()');
+    log("PARAMETER:" + Memory.readCString(args[0]))
+  },
+
+  onLeave(log, retval, state) {
+    log("The return value is: " + retval);
+  }
+});
+```
+- This showed that the return value was 0 which meant false, so it could be changed to 1. So I added `retval.replace(ptr(1))` in `onLeave()` and got the final flag.
+- These were the logs during the game recorded in the terminal.
+```bash
+         /* TID 0x927 */
+ 16609 ms  _Z7set_otpi()
+ 16609 ms  Parameter:231283 #OTP for penguin 1
+250851 ms  _Z17validate_purchaseiii()
+284685 ms  _Z17validate_purchaseiii()
+414482 ms  _Z17validate_purchaseiii() #sample purchase for advice ($10)
+414482 ms  PARAMETER 1: 0x2
+414482 ms  PARAMETER 2: 0xa
+414482 ms  PARAMETER 3: 0xa
+533453 ms  _Z17validate_purchaseiii() #billionaire item flag2
+588786 ms  _Z16check_biometricsPKc()
+656363 ms  _Z16check_biometricsPKc()
+656363 ms  PARAMETER:nOITh22k4y3N1SikM9mcqI5m7vtiBhGy3YRiaRTePU0Pvg7HqtreBvQGqKxzzDx2
+687964 ms  _Z16check_biometricsPKc()
+687964 ms  PARAMETER:mMlKlCxBexaZbhpRYe5iXUyLovKn7FntZWDLgAWL54shjf6FKCxreuDSpVDul0nK
+687964 ms  The return value is: 0x0
+844216 ms  _Z16check_biometricsPKc()
+844216 ms  PARAMETER:D3foWLbIsE7LzCunREbxjAJZPBn6tqE7rrtMAUe2gjLdvGPKSyFB7XiWiVacJmh9
+844216 ms  The return value is: 0x1 #biometric flag
+```
+
+**Questions:**
+1. *What is the OTP flag?*
+**Answer:** THM{one_tough_password}.
+
+2. *What is the billionaire item flag?*
+**Answer:** THM{credit_card_undeclined}.
+
+3. *What is the biometric flag?*
+**Answer:** THM{dont_smash_your_keyboard}.
+
+**Concepts:**
+- Modifying internal APIs and hacking a game using Frida
