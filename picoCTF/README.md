@@ -18,3 +18,4 @@
 | 15  | flag leak                      | Binary-Exp   | Medium     | Done |
 | 16 | Blast from the Past | Forensics | Medium | Done | 
 | 17 | substitution2 | Cryptography | Medium | Done | 
+| 18 | Pixelated | Cryptography | Medium | Done | 
