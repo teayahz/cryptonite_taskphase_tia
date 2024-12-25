@@ -737,7 +737,8 @@ The password is `fluffycat12`.
 **Challenge:**
 - First, I ran the `challenge.sh` file which opened three windows, one of which was UI for a light switch and I had to turn this on.
 - I opened `challenge.pcapng` in WireShark and searched for the `MQTT` packets and found a string `d2FyZXZpbGxl/Y2hyaXN0bWFzbGlnaHRz` which was the topic.
-- Now using the command `mosquitto_pub -h localhost -t "d2FyZXZpbGxl/Y2hyaXN0bWFzbGlnaHRz" -m "on"`, the lights were turned on and it give the flag.
+- Now using the command `mosquitto_pub -h localhost -t "d2FyZXZpbGxl/Y2hyaXN0bWFzbGlnaHRz" -m "on"`, the lights were turned on and it gave the flag.
+
 ![day24.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/AOC24/img/day24.JPG?raw=true)
 
 **Questions:**
