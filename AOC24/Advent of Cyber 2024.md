@@ -666,3 +666,41 @@ defineHandler({
 **Concepts:**
 - Disassembling and Decompiling
 - Multi-stage binaries
+
+# Day 22
+
+**Challenge:**
+- I first ran `cd /home/ubuntu/dfir_artefacts/` and then `cat pod_apache2_access.log`  to view the logs. 
+- I viewed the docker registry log to find the unusual IP address. 
+- I searched for this new IP address in the Apache access logs and found the time when the connection was made and when the malicious image was pushed to the registry.
+- Kubernetes is used to get the final secret.
+
+**Questions:**
+1. *What is the name of the webshell that was used by Mayor Malware?*
+**Answer:** shelly.php. 
+
+2. *What file did Mayor Malware read from the pod?*
+**Answer:** db.php. `cat+db.php` is seen to be run from the last few lines of the log.
+
+3. *What tool did Mayor Malware search for that could be used to create a remote connection from the pod?*
+**Answer:** nc. It's in the last line of `pod_apache2_access.log`.
+![day22_1.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/AOC24/img/day22.JPG?raw=true)
+
+4. *What IP connected to the docker registry that was unexpected?*
+**Answer:** 10.10.130.253. `cat docker-registry-logs.log | grep "HEAD" | cut -d ' ' -f 1`
+
+5. *At what time is the first connection made from this IP to the docker registry?*
+**Answer:** 29/Oct/2024:10:06:33 +0000. I searched for this new IP address in the logs.
+![day22_2.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/AOC24/img/day22(1).JPG?raw=true)
+
+6. *At what time is the updated malicious image pushed to the registry?*
+**Answer:** 29/Oct/2024:12:34:28 +0000. I searched for the PATCH request from the new IP address.
+![day22_3.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/AOC24/img/day22(2).JPG?raw=true)
+
+7. *What is the value stored in the "pull-creds" secret?*
+**Answer:** {"auths":
+{"http:\//docker-registry.nicetown.loc:5000":{"username":"mr.nice","password":"Mr.N4ughty","auth":"bXIubmljZTpNci5ONHVnaHR5"}}}. Using the final command `kubectl get secret pull-creds -n wareville -o jsonpath='{.data.\.dockerconfigjson}' | base64 --decode`. 
+
+**Concepts:**
+- Digital Forensics & Incident Response (DFIR)
+- Kubernetes and its use in DFIR log analysis
