@@ -603,3 +603,34 @@ defineHandler({
 
 **Concepts:**
 - Modifying internal APIs and hacking a game using Frida
+
+# Day 20
+
+**Challenge:**
+- By opening the `C2_Traffic_Analysis` PCAP file through *WireShark* and setting a filter for source IP = 10.10.229.217, several HTTP packets can be viewed which were received by the C2 server.
+- Viewing all the packets highlighted, the messages sent and received for communication can be viewed by a right click and then Follow HTTP. 
+- One packet had an encrypted message `8724670c271adffd59447552a0ef3249` and another had the AES ECB key for it to be decrypted. *CyberChef* is used to decrypt this.
+![day20_3.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/AOC24/img/day20(3).JPG?raw=true)
+![day20_4.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/AOC24/img/day20(2).JPG?raw=true)
+**Questions:**
+1. *What was the first message the payload sent to Mayor Malware’s C2?*
+**Answer:** I am in Mayor!. This is in `POST /initial`
+![day20_1.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/AOC24/img/day20.JPG?raw=true)
+
+2. *What was the IP address of the C2 server?*
+**Answer:** 10.10.123.224. The packets highlighted in green for HTTP protocol have this destination IP.
+
+3. *What was the command sent by the C2 server to the target machine?*
+**Answer:** whoami. This is seen by following the HTTP stream of the `GET /command` packet.
+![day20_2.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/AOC24/img/day20(1).JPG?raw=true)
+
+4. *What was the filename of the critical file exfiltrated by the C2 server?*
+**Answer:** credentials.txt. By following the HTTP stream of `POST /exfiltrate`
+
+5. *What secret message was sent back to the C2 in an encrypted format through beacons?*
+**Answer:** THM_Secret_101. The message and key can be viewed in `POST /beacon` and `POST /exfiltrate`
+![day20_5.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/AOC24/img/day20(4).JPG?raw=true)
+
+**Concepts:**
+- Using WireShark to view and analyse network traffic packets
+- How C2 servers communicate with the victim machine
