@@ -611,7 +611,9 @@ defineHandler({
 - Viewing all the packets highlighted, the messages sent and received for communication can be viewed by a right click and then Follow HTTP. 
 - One packet had an encrypted message `8724670c271adffd59447552a0ef3249` and another had the AES ECB key for it to be decrypted. *CyberChef* is used to decrypt this.
 ![day20_3.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/AOC24/img/day20(3).JPG?raw=true)
+
 ![day20_4.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/AOC24/img/day20(2).JPG?raw=true)
+
 **Questions:**
 1. *What was the first message the payload sent to Mayor Malware’s C2?*
 **Answer:** I am in Mayor!. This is in `POST /initial`
