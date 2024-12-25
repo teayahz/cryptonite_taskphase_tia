@@ -636,3 +636,33 @@ defineHandler({
 **Concepts:**
 - Using WireShark to view and analyse network traffic packets
 - How C2 servers communicate with the victim machine
+
+# Day 21
+
+**Challenge:**
+- I opened `WarewilleApp.exe` in *ILSpy* and navigated to Form1 in the FancyApp section.
+![day21_1.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/AOC24/img/day21.JPG?raw=true)
+- I found the function for downloading and executing a file and opened this new file being downloaded in ILSpy.
+- I navigated to its main function to find the new file being created and the C2 server where files are trying to be uploaded.
+
+**Questions:**
+1. *What is the function name that downloads and executes files in the WarevilleApp.exe?*
+**Answer:** DownloadAndExecuteFile. 
+
+2. *Once you execute the WarevilleApp.exe, it downloads another binary to the Downloads folder. What is the name of the binary?*
+**Answer:** explorer.exe. 
+
+3. *What domain name is the one from where the file is downloaded after running WarevilleApp.exe?*
+**Answer:** mayorc2.thm. 
+
+4. *The stage 2 binary is executed automatically and creates a zip file comprising the victim's computer data; what is the name of the zip file?*
+**Answer:** CollectedFiles.zip.
+![day21_2.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/AOC24/img/day21(1).JPG?raw=true)
+
+5. *What is the name of the C2 server where the stage 2 binary tries to upload files?*
+**Answer:** anonymousc2.thm.
+![day21_3.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/AOC24/img/day21(2).JPG?raw=true)
+
+**Concepts:**
+- Disassembling and Decompiling
+- Multi-stage binaries
