@@ -704,3 +704,30 @@ defineHandler({
 **Concepts:**
 - Digital Forensics & Incident Response (DFIR)
 - Kubernetes and its use in DFIR log analysis
+
+# Day 23
+
+**Challenge:**
+- John the Ripper is used to crack hashed passwords. `hash-id.py` identified the hash of `hash1.txt` which was SHA-256.
+- Wordlists include a list of common passwords and the one used here is `rockyou.txt`. The wordlist rules can be applied to the hash for instances where letters may be replaced by symbols.
+- So, I used the command `john --format=raw-sha256 --rules=wordlist --wordlist=/usr/share/wordlists/rockyou.txt hash1.txt` to crack this hash.
+![day23_1.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/AOC24/img/day23.JPG?raw=true)
+The password is `fluffycat12`.
+- Now, a password protected PDF file was found and this was the next victim whose password had to be cracked.
+- The hash can be created with pdf2john with the command `pdf2john.pl private.pdf>pdf.hash`
+- Since Mayor Malware's password was to be found, possible contenders for passwords can be added to the wordlist such as *fluffy*, *mayor*, and other variations.
+- Now the command `john --rules=single --wordlist=wordlist.txt pdf.hash` can be used.
+![day23_2.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/AOC24/img/day23(1).JPG?raw=true) 
+ The password is `M4y0rM4lw4r3`.
+
+**Questions:**
+1. *Crack the hash value stored in `hash1.txt`. What was the password?*
+**Answer:** fluffycat12.
+
+2. *What is the flag at the top of the `private.pdf` file?*
+**Answer:** THM{do_not_GET_CAUGHT}. After getting the password to the file, it can be first converted to text using `pdftotext private.pdf -upw M4y0rM41w4r3` and then the first few lines can be read using `head private.txt`.
+![day23_3.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/AOC24/img/day23(2).JPG?raw=true)
+
+**Concepts:**
+- Hashes such as SHA-256 & MD5
+- Using John the Ripper and giving it a wordlist to crack the hash 
