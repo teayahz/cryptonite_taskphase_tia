@@ -266,6 +266,7 @@ picoCTF{71m3_7r4v311ng_p1c7ur3_12e0c36b}
 
 **Solution:**
 - I opened `challengefile` in a hex editor and observed that the header was for a JPEG file, but the bytes weren't in the right order.
+
 ![endian1.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/picoCTF/images/endian1.JPG?raw=true)
 
 - Here, every four bites had been reversed as the file is in little-endian & had to be converted to big-endian.
@@ -289,7 +290,8 @@ fix_binary_endianness(input_file, output_file)
 
 print("File processing complete. Fixed file saved as:", output_file)
 ```
-- I ran this through my terminal and got the flag as an image. 
+- I ran this through my terminal and got the flag as an image.
+
 ![endian2.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/picoCTF/images/out.jpeg?raw=true)
 
 **Concepts learnt:**
