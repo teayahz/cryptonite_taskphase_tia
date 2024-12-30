@@ -259,3 +259,42 @@ picoCTF{71m3_7r4v311ng_p1c7ur3_12e0c36b}
 - https://hexed.it/
 - https://www.epochconverter.com/
 - https://stackoverflow.com/questions/78185037/how-to-edit-the-samsung-trailer-tag-timestamp
+
+# endianness-v2
+
+**Flag:** `picoCTF{cert!f1Ed_iNd!4n_s0rrY_3nDian_b039bc14}`
+
+**Solution:**
+- I opened `challengefile` in a hex editor and observed that the header was for a JPEG file, but the bytes weren't in the right order.
+![endian1.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/picoCTF/images/endian1.JPG?raw=true)
+
+- Here, every four bites had been reversed as the file is in little-endian & had to be converted to big-endian.
+- I made a Python program to do this where it first read the file's binary data, reversed every 4 bytes and put it into a new file that is saved as JPEG.
+```python
+def fix_binary_endianness(input_file, output_file):
+    with open(input_file, 'rb') as f:
+        data = f.read()
+    
+    fixed_data = bytearray()
+    for i in range(0, len(data), 4):
+        chunk = data[i:i+4]
+        fixed_data.extend(chunk[::-1])  
+    
+    with open(output_file, 'wb') as f:
+        f.write(fixed_data)
+
+input_file = '/mnt/c/users/admin/downloads/challengefile'
+output_file = '/mnt/c/users/admin/downloads/out.jpeg'
+fix_binary_endianness(input_file, output_file)
+
+print("File processing complete. Fixed file saved as:", output_file)
+```
+- I ran this through my terminal and got the flag as an image. 
+![endian2.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/picoCTF/images/out.jpeg?raw=true)
+
+**Concepts learnt:**
+1. Little-endian and big-endian way of storing bytes
+
+**Resources:**
+- https://hexed.it/
+
