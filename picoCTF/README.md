@@ -20,3 +20,7 @@
 | 17 | substitution2 | Cryptography | Medium | Done | 
 | 18 | Pixelated | Cryptography | Medium | Done | 
 | 19 | endianness-v2 | Forensics | Medium | Done
+
+## picoCTF progress: 
+
+![pico.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/picoCTF/images/pico.JPG?raw=true)
