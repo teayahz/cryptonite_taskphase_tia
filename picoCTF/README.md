@@ -21,6 +21,7 @@
 | 18 | Pixelated | Cryptography | Medium | Done | 
 | 19 | endianness-v2 | Forensics | Medium | Done | 
 | 20  | Mini RSA | Cryptography | Medium | Done |
+| 21 | Eavesdrop | Forensics | Medium | Done | 
 
 ## picoCTF progress: 
 
