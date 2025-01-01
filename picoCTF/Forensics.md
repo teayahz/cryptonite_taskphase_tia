@@ -300,3 +300,57 @@ print("File processing complete. Fixed file saved as:", output_file)
 **Resources:**
 - https://hexed.it/
 
+# Eavesdrop
+
+**Flag:** `picoCTF{nc_73115_411_dd54ab67}`
+
+**Solution:**
+- The given PCAP file can be opened on Wireshark. I followed one of the TCP streams and found the following conversation:
+```
+Hey, how do you decrypt this file again?
+
+You're serious?
+
+Yeah, I'm serious
+
+*sigh* openssl des3 -d -salt -in file.des3 -out file.txt -k supersecretpassword123
+
+Ok, great, thanks.
+
+Let's use Discord next time, it's more secure.
+
+C'mon, no one knows we use this program like this!
+
+Whatever.
+
+Hey.
+
+Yeah?
+
+Could you transfer the file to me again?
+
+Oh great. Ok, over 9002?
+
+Yeah, listening.
+
+Sent it
+
+Got it.
+
+You're unbelievable
+```
+
+- There seemed to be `file.des3` that's required to find the secret. Now the port 9002 could be filtered using `tcp.port == 9002`. 
+- One of the packets had a string starting with `Salted` which was 48 byte hex data being transferred: `53616c7465645f5f0c160de825c4925b6543fa6c52dc91b4487b8252966d9de6aec8508b95522f879232bf89e3066440`. 
+- I saved this as `data.txt` and then ran the command `xxd -r -p data.txt file.des3` to form the binary file.
+- Now, I had the required file and ran the command `openssl des3 -d -salt -in file.des3 -out file.txt -k supersecretpassword123`. The flag was now in `file.txt`.
+
+**Concepts learnt:**
+1. Following streams and filtering in Wireshark
+2. The `xxd` tool that is used to convert binary files, but here making the hexadecimal dump into a raw binary file using `-r`.
+
+**Mistakes & other approaches:**
+- I tried saving the `Salted` string itself as the file but the data didn't match and it was better to convert from hex.
+
+**Resources:**
+- https://linux.die.net/man/1/xxd
