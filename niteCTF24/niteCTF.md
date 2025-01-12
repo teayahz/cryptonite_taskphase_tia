@@ -268,8 +268,10 @@ Vault Unlocked! The flag is: nite{El_Pr0f3_0f_Prec1s10n_Pl4ns}
 - The main contents to be extracted here were the attachments and the tracks. I exported track 3 into a .txt file since it said subtitles using `mkvextract screech.mkv tracks 2:./track.txt`. The important content in the file, which was the subtitle, was: `UnderstaNDAblE Buckbēaĸ SCRéècHiɳg-ɲoǐşēЅz`
 - I extracted the attachments using the command `mkvextract screech.mkv attachments 1:./buckbeat.otf 2:./mechanical.otf`. Mechanical was a normal typeface but Buckbeak was altered. 
 ![buck4.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/niteCTF24/files/buck4.JPG?raw=true)
+
 - So, I installed the Buckbeak font into my system, opened a Word file, and I copy pasted the subtitle with this font.
 ![buck5.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/niteCTF24/files/buck5.JPG?raw=true)
+
 This had to be tweaked a bit to get the correct flag.
 
 ### Flag: `nite{w3_b0th_kn0w_wh0_i5_ug1y_h3r3_ma1f0y}`
