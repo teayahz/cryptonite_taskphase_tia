@@ -107,9 +107,13 @@ Vault Unlocked! The flag is: nite{El_Pr0f3_0f_Prec1s10n_Pl4ns}
 - On opening `bit.ly/freakestein0`, I got another image `ducky.jpg` which I again thought had to be extracted and so uploaded it onto *Aperi'Solve*. I extracted the files using *binwalk* and they all pointed to the GitHub link: `github.com/freakada-3301`.
 - The `Salvation-in-Decay` repository had 3 files: `README.md`, `Code of decay` & `Whispers of the forgotten`. README contained `1sk3vr3d_qw5yvvc}` which was the second part of the flag and was encoded with a cipher, I saved it for later. The other two files had text encoded in Alien cipher which translated to `SOMEHOW FORGOTTEN` & `WE WERE HERE`. These were hints for the next step.
 - I opened the commit history of these other two files in the repository and found the following:
+
 ![freak1.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/niteCTF24/files/freak1.JPG?raw=true)
+
 ![freak2.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/niteCTF24/files/freak2.JPG?raw=true)
+
 ![freak3.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/niteCTF24/files/freak3.JPG?raw=true)
+
 - The numbers represent line : word : character of the poem and on doing that, I get `httpsdiscordggAHj7R2Qd` which when tweaked to fit the format, is an invite link to the freakada-3301 Discord server. 
 - Apart from a voice channel that played a song (worse than rick-roll) on loop, there was a Discord bot asking for its *prime*. This was 3301. It then asked for the result of `3301*x*y` where x and y were integral parts of the original image (dimensions 449x503), which was 745520947. 
 - After sending that, the bot gave 2 values `13.34508015959565, 74.79629600750295` that could only mean coordinates. This was one of the photos under the reviews of the location.
