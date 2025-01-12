@@ -139,7 +139,8 @@ Vault Unlocked! The flag is: nite{El_Pr0f3_0f_Prec1s10n_Pl4ns}
 - This was a lengthy process and after multiple checks by comparing the .midi I got from the website to the given file in Audacity, I ended up with the string `usephrasetruefansreadthebookstohearsomethingdeep`.
 ![buck1.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/niteCTF24/files/buck1.JPG?raw=true)
 ![buck2.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/niteCTF24/files/buck2.JPG?raw=true)
-- I put `truefansreadthebooks` as the password for the file in DeepSound. This let me extract 2 secret files - `disclaimer.txt` and `screech.mkv`. 
+- I put `truefansreadthebooks` as the password for the file in DeepSound. This let me extract 2 secret files - `disclaimer.txt` and `screech.mkv`.
+
 ![buck3.JPG](https://github.com/teayahz/cryptonite_taskphase_tia/blob/main/niteCTF24/files/buck3.JPG?raw=true)
 - Now, `screech.mkv` was just a 9 second clip from Harry Potter, but Matroska video files can store a lot of content. I searched for tools for mkv file forensics and installed `mkvtoolnix`.
 - I searched for the possible content in the file using `mkvinfo screech.mkv` and got this:
